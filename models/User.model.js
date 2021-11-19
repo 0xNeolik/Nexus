@@ -5,12 +5,33 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      // unique: true -> Ideally, should be unique, but its up to you
+      require: true,
+      unique: true,
     },
-    password: String,
+    role: {
+      type: String,
+      enum: ["PLAYER", "BUSSINES"],
+      default: "PLAYER",
+    },
+    image: {
+      type: String,
+      default: "../public/images/blank-profile-picture.png",
+    },
+    description: {
+      type: String,
+      default: "Im Here",
+    },
+    email: {
+      type: String,
+      require: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      require: true,
+    },
   },
   {
-    // this second object adds extra properties: `createdAt` and `updatedAt`
     timestamps: true,
   }
 );
