@@ -6,14 +6,14 @@ const User = require("../models/User.model");
 // Signup
 router.get("/signup", (req, res) => res.render("auth/signup"));
 router.post("/signup", (req, res) => {
-  const { username, userPwd } = req.body;
+  const { email, password } = req.body;
 
-  if (userPwd.length === 0 || username.length === 0) {
+  if (password.length === 0 || email.length === 0) {
     res.render("auth/signup-form", { errorMsg: "Rellena todos los campos" });
     return;
   }
 
-  User.findOne({ username })
+  User.findOne({ email })
     .then((user) => {
       if (user) {
         res.render("auth/signup", { errorMsg: "Usuario ya registrado" });
@@ -22,11 +22,17 @@ router.post("/signup", (req, res) => {
 
       const bcryptSalt = 10;
       const salt = bcrypt.genSaltSync(bcryptSalt);
-      const hashPass = bcrypt.hashSync(userPwd, salt);
+      const hashPass = bcrypt.hashSync(password, salt);
 
-      User.create({ username, password: hashPass })
-        .then(() => res.redirect("/"))
+      User.create({ email, password: hashPass })
+        .then(() => {
+          req.app.locals.user = true;
+          res.redirect("/");
+        })
         .catch((err) => console.log(err));
+
+      req.app.locals.user = true;
+      res.redirect("/");
     })
     .catch((err) => console.log(err));
 });
@@ -34,14 +40,14 @@ router.post("/signup", (req, res) => {
 // Login
 router.get("/login", (req, res) => res.render("auth/login"));
 router.post("/login", (req, res) => {
-  const { username, userPwd } = req.body;
+  const { email, password } = req.body;
 
-  if (userPwd.length === 0 || username.length === 0) {
+  if (password.length === 0 || email.length === 0) {
     res.render("auth/login", { errorMsg: "Rellena los campos" });
     return;
   }
 
-  User.findOne({ username })
+  User.findOne({ email })
     .then((user) => {
       console.log(req.session.currentUser);
       if (!user) {
@@ -49,7 +55,7 @@ router.post("/login", (req, res) => {
         return;
       }
 
-      if (bcrypt.compareSync(userPwd, user.password) === false) {
+      if (bcrypt.compareSync(password, user.password) === false) {
         res.render("auth/login", { errorMsg: "Contraseña incorrecta" });
         return;
       }
