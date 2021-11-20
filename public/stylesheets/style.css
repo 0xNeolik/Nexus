@@ -5,3 +5,13 @@ a {
 h1 {
   color: 15px;
 }
+
+#user-img {
+  border-radius: 50%;
+  width: 25px;
+}
+
+#user-img-profile {
+  border-radius: 50%;
+  width: 20%;
+}

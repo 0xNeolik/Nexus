@@ -1,2 +1,14 @@
-<h1>hola Soy el usuario
-</h1>
+<div class="container text-center mt-5">
+  <img src="{{user.image}}" alt="" id="user-img-profile" />
+  <h1 class="my-5">{{user.name}}</h1>
+  <p>
+    <small class="text-muted">{{user.description}}</small>
+  </p>
+  <div class="d-flex justify-content-center row mt-5">
+    <a href="/auth/logout" class="btn btn-dark mx-5">Log Out</a>
+    <a href="/auth/edit?id={{user._id}}" class="btn btn-dark mx-5">Edit Profile</a>
+    <form action="/auth/delete?id={{user._id}}" method="POST">
+      <button type="submit" class="btn btn-danger mx-3">Delete Profile</button>
+    </form>
+  </div>
+</div>

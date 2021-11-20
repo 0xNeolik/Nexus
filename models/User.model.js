@@ -9,12 +9,12 @@ const userSchema = new Schema(
     },
     role: {
       type: String,
-      enum: ["PLAYER", "BUSSINES"],
+      enum: ["PLAYER", "BUSSINES", "PM"],
       default: "PLAYER",
     },
     image: {
       type: String,
-      default: "../public/images/blank-profile-picture.png",
+      default: "/images/blank-profile-picture.png",
     },
     description: {
       type: String,
