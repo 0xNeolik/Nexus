@@ -1,17 +1,14 @@
 const { Schema, model } = require("mongoose");
 
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
-const userSchema = new Schema(
+const bookSchema = new Schema(
   {
-    email: {
-      type: String,
-      require: true,
-      unique: true,
-    },
+    cyber_id: { type: Schema.Types.ObjectId, ref: "Cyber" },
     date: {
       type: Date,
-      require: true,
+      required: true,
     },
+    participants: Number,
     owner: { type: Schema.Types.ObjectId, ref: "User" },
   },
   {
@@ -19,6 +16,6 @@ const userSchema = new Schema(
   }
 );
 
-const User = model("User", userSchema);
+const Book = model("Book", bookSchema);
 
-module.exports = User;
+module.exports = Book;

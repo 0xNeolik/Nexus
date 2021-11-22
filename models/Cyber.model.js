@@ -9,10 +9,10 @@ const cyberSchema = new Schema(
     },
     description: {
       type: String,
-      required: true,
       default: "Please, enjoy the place",
     },
-    bussines_id: { type: Schema.Types.ObjectId, ref: "User" },
+    limit: Number,
+    owner: { type: Schema.Types.ObjectId, ref: "User" },
     location: {
       type: {
         type: String,

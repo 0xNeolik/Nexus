@@ -4,9 +4,13 @@
   <p>
     <small class="text-muted">{{user.description}}</small>
   </p>
-  <div class="d-flex justify-content-center row mt-5">
-    <a href="/auth/logout" class="btn btn-dark mx-5">Log Out</a>
+  <div class="col-12 mb-3 mt-5">
     <a href="/auth/edit?id={{user._id}}" class="btn btn-dark mx-5">Edit Profile</a>
+  </div>
+  <div class="col-12 my-3">
+    <a href="/auth/logout" class="btn btn-dark mx-5">Log Out</a>
+  </div>
+  <div class="col-12 my-3">
     <form action="/auth/delete?id={{user._id}}" method="POST">
       <button type="submit" class="btn btn-danger mx-3">Delete Profile</button>
     </form>

@@ -5,11 +5,11 @@ const userSchema = new Schema(
   {
     name: {
       type: String,
-      require: true,
+      required: true,
     },
     role: {
       type: String,
-      enum: ["PLAYER", "BUSSINES", "PM"],
+      enum: ["PLAYER", "BUSINESS", "PM"],
       default: "PLAYER",
     },
     image: {
@@ -22,12 +22,12 @@ const userSchema = new Schema(
     },
     email: {
       type: String,
-      require: true,
+      required: true,
       unique: true,
     },
     password: {
       type: String,
-      require: true,
+      required: true,
     },
   },
   {
