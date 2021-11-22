@@ -7,6 +7,7 @@ const cyberSchema = new Schema(
       unique: true,
       required: true,
     },
+    location_name: String,
     description: {
       type: String,
       default: "Please, enjoy the place",

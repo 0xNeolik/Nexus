@@ -52,9 +52,13 @@ function initMap() {
       "<div><strong>" + place.name + "</strong><br>" + address
     );
     infowindow.open(map, marker);
-
     const lat = place.geometry.location.lat();
     const lng = place.geometry.location.lng();
-    console.log(place.geometry.location);
+
+    const lats = document.querySelector("#lat");
+    lats.value = lat;
+
+    const long = document.querySelector("#log");
+    long.value = lng;
   });
 }

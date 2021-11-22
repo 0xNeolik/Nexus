@@ -14,6 +14,8 @@ app.locals.title = `Created with IronLauncher`;
 
 app.locals.user = undefined;
 
+app.locals.cybers = [];
+
 require("./config/session.config")(app);
 
 require("./routes")(app);

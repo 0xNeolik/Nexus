@@ -1,30 +1,32 @@
 <h1>Join Us!</h1>
 <form action="/cyber/create-new-cyber" method="POST">
-  {{! <div class="my-5">
+  <div class="my-5">
+    <h5>Cyber`s location</h5>
     <input
       id="searchInput"
       class="controls"
       type="text"
       placeholder="Enter a location"
-      name="location"
+      name="location_name"
+      required
     />
   </div>
-  <div id="map"></div> }}
+  <div id="map"></div>
   <div class="form-group">
     <label for="name">Cyber`s name</label>
     <input type="text" class="form-control" id="name" name="name" required />
   </div>
   <div class="form-group">
-    <label for="description">Description of the cyber</label>
+    <label for="description">Description</label>
     <textarea
       type="text"
       class="form-control"
       id="username"
       name="description"
-      required
     ></textarea>
   </div>
-
+  <input type="text" name="lat" id="lat" hidden />
+  <input type="text" name="lng" id="log" hidden />
   {{! <div class="form-group">
     <label for="location">Cyber`s location</label>
     <input
