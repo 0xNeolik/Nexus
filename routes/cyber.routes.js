@@ -13,7 +13,7 @@ router.post("/create-new-cyber", (req, res) => {
   Cyber.create({ location, location_name, name, description })
     .then((cyber) => {
       res.redirect("/");
-      req.app.locals.cybers = cyber;
+      req.app.locals.cyber.push(cyber);
       console.log(cyber);
     })
     .catch((err) => {

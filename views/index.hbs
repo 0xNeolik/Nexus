@@ -4,12 +4,16 @@
   <div class="row" id="news-container">
   </div>
 </div>
-{{#if user}}
+{{!-- {{#if user}}
   <ul>
     <li>{{cyber.name}}</li>
   </ul>
-{{/if}}
+{{/if}} --}}
 
-{{!-- {{#each cyber}}
-  <li>{{cyber.name}}</li>
-{{/each}} --}}
+{{#if user}}
+  <ul>
+    {{#each cyber}}
+      <li>{{name}}</li>
+    {{/each}}
+  </ul>
+{{/if}}
