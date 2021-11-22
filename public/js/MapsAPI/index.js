@@ -58,4 +58,3 @@ function initMap() {
     console.log(place.geometry.location);
   });
 }
-function getPosition() {}

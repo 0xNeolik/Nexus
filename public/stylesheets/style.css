@@ -1,24 +1,46 @@
 nav a {
   color: white;
 }
+
 a:hover {
   text-decoration: none;
   color: #7412d0;
 }
+
 a {
   color: black;
 }
+
 h1 {
   color: 15px;
 }
+
 nav {
   background-color: black;
 }
+#login-btn {
+  border: 1px solid white;
+  margin-right: 10px;
+}
+
+#sign-btn {
+  border: 1px solid white;
+}
+
+#login-btn:hover {
+  border: 1px solid #7412d0;
+}
+
+#sign-btn:hover {
+  border: 1px solid #7412d0;
+}
+
 #searchInput {
   margin-top: 10px;
   height: 40px;
   width: 40%;
 }
+
 #map {
   height: 450px;
   width: 80%;
