@@ -85,26 +85,62 @@ function getCybers() {
 }
 
 function placeMarkers(mapIndex, cybers) {
-  console.log(cybers);
-  const iconBase = "https://maps.google.com/mapfiles/kml/shapes/";
   const markers = [];
   cybers.forEach((cyber) => {
+    let infowindow = new google.maps.InfoWindow();
+
+    infowindow.setContent(
+      "<div><strong>" +
+        "<a href=/cyber/details-cyber?id=" +
+        cyber._id +
+        ">" +
+        cyber.name +
+        "</a>" +
+        "</strong><br>" +
+        "<br>" +
+        cyber.location_name +
+        "<br>" +
+        "<br>" +
+        cyber.description
+    );
     const center = {
       lat: cyber.location.coordinates[0],
       lng: cyber.location.coordinates[1],
     };
-
     const newMarker = new google.maps.Marker({
       position: center,
       map: mapIndex,
       title: cyber.name,
       icon: {
-        url: "images/Vector.svg",
-        scaledSize: new google.maps.Size(50, 40),
+        url: "images/Generalmarker.svg",
+        scaledSize: new google.maps.Size(55, 45),
       },
+    });
+    newMarker.addListener("click", () => {
+      infowindow.open(mapIndex, newMarker);
     });
     markers.push(newMarker);
   });
 
   return markers;
+}
+function DetailsMap() {
+  const ironhackMAD = {
+    lat: 40.3977381,
+    lng: -3.690471916,
+  };
+  const mapDetails = new google.maps.Map(
+    document.getElementById("mapDetails"),
+    {
+      zoom: 14,
+      center: ironhackMAD,
+    }
+  );
+
+  // Markers
+  getCybers(mapDetails)
+    .then((cyber) => {
+      const markers = placeMarkers(mapDetails, cyber);
+    })
+    .catch((error) => console.log(error));
 }

@@ -18,4 +18,5 @@ router.get("/api/:id", (req, res, next) => {
     .then((oneCyberFromDB) => res.status(200).json({ cyber: oneCyberFromDB }))
     .catch((err) => next(err));
 });
+
 module.exports = router;

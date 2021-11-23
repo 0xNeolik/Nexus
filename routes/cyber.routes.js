@@ -16,14 +16,12 @@ router.post("/create-new-cyber", (req, res) => {
     type: "Point",
     coordinates: [req.body.lat, req.body.lng],
   };
-  console.log(req.body);
+
   const { location_name, name, description } = req.body;
   Cyber.create({ location, location_name, name, description })
     .then((cyber) => {
       res.redirect("/");
-      console.log(process.env.APIMAPS);
       req.app.locals.cyber.push(cyber);
-      console.log(cyber);
     })
     .catch((err) => {
       res.render("/");
@@ -33,7 +31,6 @@ router.post("/create-new-cyber", (req, res) => {
 
 router.get("/details-cyber", (req, res, next) => {
   const { id } = req.query;
-
   Cyber.findById({ _id: id })
     .then((cyber) => res.render("cybers/cyber-details", { cyber }))
     .catch((err) => next(err));
