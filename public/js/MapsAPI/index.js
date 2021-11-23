@@ -61,7 +61,7 @@ function initMap() {
     const long = document.querySelector("#log");
     long.value = lng;
   });
-}
+};
 function indexMap() {
   const ironhackMAD = {
     lat: 40.3977381,
@@ -81,30 +81,91 @@ function indexMap() {
 }
 
 function getCybers() {
-  return axios.get("/api").then((response) => response.data.cybers);
+  return axios.get("/cyber/api").then((response) => response.data.cybers);
 }
 
 function placeMarkers(mapIndex, cybers) {
-  console.log(cybers);
-  const iconBase = "https://maps.google.com/mapfiles/kml/shapes/";
   const markers = [];
   cybers.forEach((cyber) => {
+    let infowindow = new google.maps.InfoWindow();
+
+    infowindow.setContent(
+      "<div><strong>" +
+        "<a href=/cyber/details-cyber?id=" +
+        cyber._id +
+        ">" +
+        cyber.name +
+        "</a>" +
+        "</strong><br>" +
+        "<br>" +
+        cyber.location_name +
+        "<br>" +
+        "<br>" +
+        cyber.description
+    );
     const center = {
       lat: cyber.location.coordinates[0],
       lng: cyber.location.coordinates[1],
     };
-
     const newMarker = new google.maps.Marker({
       position: center,
       map: mapIndex,
       title: cyber.name,
       icon: {
-        url: "images/Vector.svg",
-        scaledSize: new google.maps.Size(50, 40),
+        url: "images/Generalmarker.svg",
+        scaledSize: new google.maps.Size(55, 45),
       },
+    });
+    newMarker.addListener("click", () => {
+      infowindow.open(mapIndex, newMarker);
     });
     markers.push(newMarker);
   });
 
   return markers;
+}
+
+const mapLatitude = Number(document.querySelector('#latitude').value)
+const mapLongitude = Number(document.querySelector('#longitude').value)
+
+function DetailsMap() {
+  const ironhackMAD = {
+    lat: mapLatitude,
+    lng: mapLongitude,
+  };
+  const mapDetails = new google.maps.Map(
+    document.getElementById("mapDetails"),
+    {
+      zoom: 14,
+      center: ironhackMAD,
+    }
+  );
+
+  //Markers
+
+  cyberMarkers(mapDetails, mapLatitude, mapLongitude)
+
+}
+
+function getCyber() {
+  axios.get("/cyber/api/:id").then((response) => {
+    console.log(response.data.coordinates);
+    coordinates = responsa.data.coordinates;
+  });
+}
+
+function cyberMarkers(mapDetails, lat, lng) {
+  const center = {
+    lat: lat,
+    lng: lng,
+  };
+  const newMarker = new google.maps.Marker({
+    position: center,
+    map: mapDetails,
+    icon: {
+      url: "/images/GeneralMarker.svg",
+      scaledSize: new google.maps.Size(55, 45),
+    },
+  });
+  return newMarker;
 }
