@@ -62,3 +62,49 @@ function initMap() {
     long.value = lng;
   });
 }
+function indexMap() {
+  const ironhackMAD = {
+    lat: 40.3977381,
+    lng: -3.690471916,
+  };
+  const mapIndex = new google.maps.Map(document.getElementById("mapIndex"), {
+    zoom: 14,
+    center: ironhackMAD,
+  });
+
+  // Markers
+  getCybers(mapIndex)
+    .then((cybers) => {
+      const markers = placeMarkers(mapIndex, cybers);
+    })
+    .catch((error) => console.log(error));
+}
+
+function getCybers() {
+  return axios.get("/api").then((response) => response.data.cybers);
+}
+
+function placeMarkers(mapIndex, cybers) {
+  console.log(cybers);
+  const iconBase = "https://maps.google.com/mapfiles/kml/shapes/";
+  const markers = [];
+  cybers.forEach((cyber) => {
+    const center = {
+      lat: cyber.location.coordinates[0],
+      lng: cyber.location.coordinates[1],
+    };
+
+    const newMarker = new google.maps.Marker({
+      position: center,
+      map: mapIndex,
+      title: cyber.name,
+      icon: {
+        url: "images/Vector.svg",
+        scaledSize: new google.maps.Size(50, 40),
+      },
+    });
+    markers.push(newMarker);
+  });
+
+  return markers;
+}

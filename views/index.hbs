@@ -1,14 +1,20 @@
 <h1>{{title}} 🚀</h1>
 <p>Welcome Ironhacker!</p>
-<div class="container">
+<section class="container">
   <div class="row" id="news-container">
   </div>
-</div>
-
-{{#if user}}
-  <ul>
+</section>
+<section class="row justify-content-between">
+  <div id="mapIndex" class="col-8 mx-2"></div>
+  <ul class="col-3">
     {{#each cyber}}
       <li>{{name}}</li>
     {{/each}}
   </ul>
-{{/if}}
+</section>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/js/MapsAPI/index.js"></script>
+<script
+  src="https://maps.googleapis.com/maps/api/js?libraries=places&key={{keymaps}}&callback=indexMap"
+></script>

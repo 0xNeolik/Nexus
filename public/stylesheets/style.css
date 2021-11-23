@@ -49,6 +49,11 @@ input {
   height: 450px;
   width: 80%;
 }
+
+#mapIndex {
+  height: 450px;
+  width: 80%;
+}
 .card img {
   height: 200px;
 }
