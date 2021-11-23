@@ -16,7 +16,6 @@ const cyberSchema = new Schema(
       type: String,
       default: "Please, enjoy the place",
     },
-    limit: Number,
     owner: { type: Schema.Types.ObjectId, ref: "User" },
     location: {
       type: {

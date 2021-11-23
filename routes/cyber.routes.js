@@ -17,16 +17,16 @@ router.post("/create-new-cyber", (req, res) => {
     coordinates: [req.body.lat, req.body.lng],
   };
 
-  const { location_name, name, description } = req.body;
+  const { location_name, name, description, owner } = req.body;
   let data = {};
 
   description.length === 0
-    ? (data = { location, location_name, name })
-    : (data = { location, location_name, name, description });
+    ? (data = { location, location_name, name, owner })
+    : (data = { location, location_name, name, description, owner });
 
   Cyber.create(data)
     .then((cyber) => {
-      res.redirect("/");
+      res.redirect(`details-cyber?id=${cyber.id}`);
       req.app.locals.cyber.push(cyber);
     })
     .catch((err) => {
