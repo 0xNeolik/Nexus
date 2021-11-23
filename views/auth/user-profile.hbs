@@ -11,7 +11,7 @@
     <a href="/auth/logout" class="btn btn-dark mx-5">Log Out</a>
   </div>
   <div class="col-12 my-3">
-    <form action="/auth/delete?id={{user._id}}" method="POST">
+    <form action="/auth/{{user._id}}/delete" method="POST">
       <button type="submit" class="btn btn-danger mx-3">Delete Profile</button>
     </form>
   </div>

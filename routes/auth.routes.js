@@ -79,8 +79,8 @@ router.get("/edit", (req, res) => {
     });
 });
 
-router.post("/edit", (req, res) => {
-  const userID = req.query.id;
+router.post("/:id/edit", (req, res) => {
+  const userID = req.params.id;
   const { name, image, description } = req.body;
   User.findByIdAndUpdate(userID, { name, image, description })
     .then((user) => {
@@ -93,8 +93,8 @@ router.post("/edit", (req, res) => {
     });
 });
 
-router.post("/delete", (req, res) => {
-  const userID = req.query.id;
+router.post("/:id/delete", (req, res) => {
+  const userID = req.params.id;
   User.findByIdAndDelete(userID)
     .then(() => {
       req.app.locals.user = false;

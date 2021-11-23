@@ -1,6 +1,14 @@
 const router = require("express").Router();
 const Cyber = require("../models/Cyber.model");
 
+router.get("/", (req, res) => {
+  Cyber.find()
+    .then((AllCybers) => {
+      res.render("cybers/cybers", { AllCybers });
+    })
+    .catch((err) => console.log(err));
+});
+
 router.get("/create-new-cyber", (req, res) => res.render("bussines/new-cyber"));
 
 router.post("/create-new-cyber", (req, res) => {
@@ -13,6 +21,7 @@ router.post("/create-new-cyber", (req, res) => {
   Cyber.create({ location, location_name, name, description })
     .then((cyber) => {
       res.redirect("/");
+      console.log(process.env.APIMAPS);
       req.app.locals.cyber.push(cyber);
       console.log(cyber);
     })

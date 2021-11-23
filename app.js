@@ -16,6 +16,8 @@ app.locals.user = undefined;
 
 app.locals.cyber = [];
 
+app.locals.keymaps = process.env.APIMAPS;
+
 require("./config/session.config")(app);
 
 require("./routes")(app);

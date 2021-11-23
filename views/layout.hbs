@@ -43,6 +43,9 @@
 
             {{#if user}}
             <li class="nav-item">
+               <a class="nav-link" href="/cyber">All Cybers</a>
+            </li>
+            <li class="nav-item">
                <a class="nav-link" href="/cyber/create-new-cyber">Join Us!</a>
             </li>
             <li class="nav-item">
@@ -62,16 +65,16 @@
             {{/if}}
       </div>
    </nav>
-
    <main>
       {{{body}}}
+      
    </main>
    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
    <script src="/js/script.js"></script>
    <script src="/js/NewsAPI/APIHandler.js"></script>
    <script src="/js/NewsAPI/index.js"></script>
    <script src="/js/MapsAPI/index.js"></script>
-   <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyChlvsqbDlZKQZ8xPVdbl7Ta_6TSj2K5n0&callback=initMap"></script>
+   <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key={{keymaps}}&callback=initMap"></script>
    
    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
