@@ -16,9 +16,14 @@ router.post("/create-new-cyber", (req, res) => {
     type: "Point",
     coordinates: [req.body.lat, req.body.lng],
   };
-  console.log(req.body);
   const { location_name, name, description } = req.body;
-  Cyber.create({ location, location_name, name, description })
+  let data = {};
+
+  description.length === 0
+    ? (data = { location, location_name, name })
+    : (data = { location, location_name, name, description });
+
+  Cyber.create(data)
     .then((cyber) => {
       res.redirect("/");
       console.log(process.env.APIMAPS);
