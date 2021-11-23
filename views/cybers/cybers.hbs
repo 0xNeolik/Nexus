@@ -4,23 +4,17 @@
     <div class="row justify-content-between">
       {{#each AllCybers}}
         <div class="card mb-3 col-md-5" id="card-cyber">
-          <a href="/cybers/{{id}}">
+          <a href="/cyber/details-cyber?id={{id}}">
             <div class="row">
               <div class="col-md-4">
-                <img
-                  src="{{image}}"
-                  class="img-fluid rounded-start"
-                  alt="Cyber-Image"
-                />
+                <img src="{{image}}" class="img-fluid rounded-start" alt="Cyber-Image" />
               </div>
               <div class="col-md-8">
                 <div class="card-body">
 
                   <h5 class="card-title">{{name}}</h5>
 
-                  <p class="card-text"><small
-                      class="text-muted"
-                    >{{location_name}}</small></p>
+                  <p class="card-text"><small class="text-muted">{{location_name}}</small></p>
                   <p class="card-text">{{description}}</p>
                 </div>
               </div>
