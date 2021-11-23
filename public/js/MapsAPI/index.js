@@ -118,6 +118,9 @@ function placeMarkers(mapIndex, cybers) {
     });
     newMarker.addListener("click", () => {
       infowindow.open(mapIndex, newMarker);
+      setTimeout(() => {
+        infowindow.close();
+      }, 4000);
     });
     markers.push(newMarker);
   });

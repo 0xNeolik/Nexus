@@ -1,8 +1,15 @@
-<h1>Join Us!</h1>
+<h1>Create your own Cyber</h1>
 <form action="/cyber/create-new-cyber" method="POST">
   <div class="my-5">
     <h5>Cyber`s location</h5>
-    <input id="searchInput" class="controls" type="text" placeholder="Enter a location" name="location_name" required />
+    <input
+      id="searchInput"
+      class="controls"
+      type="text"
+      placeholder="Enter a location"
+      name="location_name"
+      required
+    />
   </div>
   <div id="map"></div>
   <div class="form-group">
@@ -11,8 +18,14 @@
   </div>
   <div class="form-group">
     <label for="description">Description</label>
-    <textarea type="text" class="form-control" id="username" name="description"></textarea>
+    <textarea
+      type="text"
+      class="form-control"
+      id="username"
+      name="description"
+    ></textarea>
   </div>
+
   <input type="text" name="lat" id="lat" hidden />
   <input type="text" name="lng" id="log" hidden />
   {{! <div class="form-group">
@@ -26,9 +39,11 @@
     />
   </div> }}
 
-  <button type="submit" class="btn btn-dark btn-block">Create it</button>
+  <button type="submit" class="btn btn-dark btn-block" id="create-btn">Create it</button>
 </form>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="/js/MapsAPI/index.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key={{keymaps}}&callback=initMap"></script>
+<script
+  src="https://maps.googleapis.com/maps/api/js?libraries=places&key={{keymaps}}&callback=initMap"
+></script>

@@ -4,7 +4,7 @@ nav a {
 
 a:hover {
   text-decoration: none;
-  color: #7412d0;
+  color: #8e2fe7;
 }
 
 a {
@@ -19,25 +19,10 @@ nav {
   background-color: black;
 }
 
-#login-btn {
-  border: 1px solid white;
-  margin-right: 10.5px;
-}
-
 input {
   color: black;
 }
-#sign-btn {
-  border: 1px solid white;
-}
 
-#login-btn:hover {
-  border: 1px solid #7412d0;
-}
-
-#sign-btn:hover {
-  border: 1px solid #7412d0;
-}
 
 #searchInput {
   margin-top: 10px;
