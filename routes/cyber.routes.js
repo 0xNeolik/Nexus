@@ -36,4 +36,20 @@ router.get("/details-cyber", (req, res, next) => {
     .catch((err) => next(err));
 });
 
+router.get("/api", (req, res, next) => {
+  Cyber.find()
+    .then((allCybers) => {
+      res.status(200).json({ cybers: allCybers });
+    })
+    .catch((err) => console.log(err));
+});
+
+router.get("/api/:id", (req, res, next) => {
+  let cyberId = req.params.id;
+  console.log("--------->", cyberId);
+  Cyber.findById(cyberId)
+    .then((oneCyberFromDB) => res.status(200).json({ cyber: oneCyberFromDB }))
+    .catch((err) => next(err));
+});
+
 module.exports = router;

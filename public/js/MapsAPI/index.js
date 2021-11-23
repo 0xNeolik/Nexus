@@ -61,7 +61,7 @@ function initMap() {
     const long = document.querySelector("#log");
     long.value = lng;
   });
-}
+};
 function indexMap() {
   const ironhackMAD = {
     lat: 40.3977381,
@@ -81,7 +81,7 @@ function indexMap() {
 }
 
 function getCybers() {
-  return axios.get("/api").then((response) => response.data.cybers);
+  return axios.get("/cyber/api").then((response) => response.data.cybers);
 }
 
 function placeMarkers(mapIndex, cybers) {
@@ -124,10 +124,14 @@ function placeMarkers(mapIndex, cybers) {
 
   return markers;
 }
+
+const mapLatitude = Number(document.querySelector('#latitude').value)
+const mapLongitude = Number(document.querySelector('#longitude').value)
+
 function DetailsMap() {
   const ironhackMAD = {
-    lat: 40.3977381,
-    lng: -3.690471916,
+    lat: mapLatitude,
+    lng: mapLongitude,
   };
   const mapDetails = new google.maps.Map(
     document.getElementById("mapDetails"),
@@ -137,10 +141,31 @@ function DetailsMap() {
     }
   );
 
-  // Markers
-  getCybers(mapDetails)
-    .then((cyber) => {
-      const markers = placeMarkers(mapDetails, cyber);
-    })
-    .catch((error) => console.log(error));
+  //Markers
+
+  cyberMarkers(mapDetails, mapLatitude, mapLongitude)
+
+}
+
+function getCyber() {
+  axios.get("/cyber/api/:id").then((response) => {
+    console.log(response.data.coordinates);
+    coordinates = responsa.data.coordinates;
+  });
+}
+
+function cyberMarkers(mapDetails, lat, lng) {
+  const center = {
+    lat: lat,
+    lng: lng,
+  };
+  const newMarker = new google.maps.Marker({
+    position: center,
+    map: mapDetails,
+    icon: {
+      url: "/images/GeneralMarker.svg",
+      scaledSize: new google.maps.Size(55, 45),
+    },
+  });
+  return newMarker;
 }
