@@ -31,4 +31,12 @@ router.post("/create-new-cyber", (req, res) => {
     });
 });
 
+router.get("/details-cyber", (req, res, next) => {
+  const { id } = req.query;
+
+  Cyber.findById({ _id: id })
+    .then((cyber) => res.render("cybers/cyber-details", { cyber }))
+    .catch((err) => next(err));
+});
+
 module.exports = router;

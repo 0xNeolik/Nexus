@@ -8,6 +8,10 @@ const cyberSchema = new Schema(
       required: true,
     },
     location_name: String,
+    image: {
+      type: String,
+      default: "/images/blank-profile-picture.png",
+    },
     description: {
       type: String,
       default: "Please, enjoy the place",
