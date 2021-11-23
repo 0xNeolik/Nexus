@@ -25,8 +25,22 @@ router.post("/signup", (req, res) => {
 
     User.create({ name, email, password: hashPass })
       .then(() => {
-        req.app.locals.user = true;
-        res.redirect("/auth/login");
+        User.findOne({ email }).then((user) => {
+          console.log(req.session.currentUser);
+          if (!user) {
+            res.render("auth/login", { errorMsg: "Usuario no reconocido" });
+            return;
+          }
+
+          if (bcrypt.compareSync(password, user.password) === false) {
+            res.render("auth/login", { errorMsg: "Contraseña incorrecta" });
+            return;
+          }
+
+          req.session.currentUser = user;
+          req.app.locals.user = req.session.currentUser;
+          res.redirect("/");
+        });
       })
       .catch((err) => console.log(err));
   });
