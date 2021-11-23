@@ -16,10 +16,7 @@ router.post("/create-new-cyber", (req, res) => {
     type: "Point",
     coordinates: [req.body.lat, req.body.lng],
   };
-<<<<<<< HEAD
-=======
 
->>>>>>> 3d9272be6a8b17839cb68f826b8f57c28ef0f78f
   const { location_name, name, description } = req.body;
   let data = {};
 
