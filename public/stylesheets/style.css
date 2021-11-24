@@ -39,7 +39,14 @@ input {
   height: 450px;
   width: 80%;
 }
+
+
 #mapDetails {
+  height: 450px;
+  width: 80%;
+}
+
+#editMapDetails {
   height: 450px;
   width: 80%;
 }

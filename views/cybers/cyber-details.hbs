@@ -23,18 +23,18 @@
       </div>
       <div id="mapDetails" class="col-md-10"></div>
     </div>
-
+  {{/with}}
     <div class="d-flex row">
       <a href="/cyber" class="btn btn-dark mx-3">Back to Cybers</a>
       <a href="/cyber/book-cyber?id={{id}}" class="btn btn-dark mx-3">Book a PC</a>
-      {{#if isCyberOwner}}
-        <a href="/cyber/edit?id={{id}}" class="btn btn-dark mx-5">Edit Cyber</a>
-        <form action="/cyber/{{id}}/delete" method="POST">
+      {{#if isOwner}}
+        <a href="/cyber/edit?id={{cyber.id}}" class="btn btn-dark mx-5">Edit Cyber</a>
+        <form action="/cyber/{{cyber.id}}/delete" method="POST">
           <button type="submit" class="btn btn-dark mx-3">Delete Cyber</button>
         </form>
       {{/if}}
     </div>
-  {{/with}}
+
 </div>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
