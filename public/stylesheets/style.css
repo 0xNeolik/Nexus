@@ -23,7 +23,6 @@ input {
   color: black;
 }
 
-
 #searchInput {
   margin-top: 10px;
   height: 40px;
@@ -40,7 +39,10 @@ input {
   width: 80%;
 }
 
-
+#MapBusiness {
+  height: 450px;
+  width: 80%;
+}
 #mapDetails {
   height: 450px;
   width: 80%;

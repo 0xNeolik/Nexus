@@ -20,20 +20,28 @@
           value={{location.coordinates.[1]}}
           hidden
         />
+        <p>Owner:
+          <a href="/auth/visit/{{owner.id}}">
+            {{#each owner}}
+              {{name}}
+            {{/each}}
+          </a>
+        </p>
+
       </div>
       <div id="mapDetails" class="col-md-10"></div>
     </div>
   {{/with}}
-    <div class="d-flex row">
-      <a href="/cyber" class="btn btn-dark mx-3">Back to Cybers</a>
-      <a href="/cyber/book-cyber?id={{id}}" class="btn btn-dark mx-3">Book a PC</a>
-      {{#if isOwner}}
-        <a href="/cyber/edit?id={{cyber.id}}" class="btn btn-dark mx-5">Edit Cyber</a>
-        <form action="/cyber/{{cyber.id}}/delete" method="POST">
-          <button type="submit" class="btn btn-dark mx-3">Delete Cyber</button>
-        </form>
-      {{/if}}
-    </div>
+  <div class="d-flex row">
+    <a href="/cyber" class="btn btn-dark mx-3">Back to Cybers</a>
+    <a href="/cyber/book-cyber?id={{id}}" class="btn btn-dark mx-3">Book a PC</a>
+    {{#if isOwner}}
+      <a href="/cyber/edit?id={{cyber.id}}" class="btn btn-dark mx-5">Edit Cyber</a>
+      <form action="/cyber/{{cyber.id}}/delete" method="POST">
+        <button type="submit" class="btn btn-dark mx-3">Delete Cyber</button>
+      </form>
+    {{/if}}
+  </div>
 
 </div>
 

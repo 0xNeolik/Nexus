@@ -7,7 +7,7 @@ const transporter = require("../config/nodemailer.config");
 
 const fileUploader = require("../config/cloudinary.config");
 const { isLoggedIn } = require("../middlewares/index");
-
+const { isOwner, isBussines } = require("../utils");
 
 // Signup
 router.get("/signup", (req, res) => res.render("auth/signup"));
@@ -61,7 +61,7 @@ router.post("/signup", (req, res) => {
       .catch((error) => {
         console.log(error);
       });
-});
+  });
 });
 
 // Login
@@ -111,27 +111,32 @@ router.get("/edit", isLoggedIn, (req, res) => {
     });
 });
 
-router.post("/:id/edit", isLoggedIn, fileUploader.single("new-image"), (req, res) => {
-  const userID = req.params.id;
-  const { name, description, existingImage } = req.body;
+router.post(
+  "/:id/edit",
+  isLoggedIn,
+  fileUploader.single("new-image"),
+  (req, res) => {
+    const userID = req.params.id;
+    const { name, description, existingImage } = req.body;
 
-  let image;
-  if (req.file) {
-    image = req.file.path;
-  } else {
-    image = existingImage;
+    let image;
+    if (req.file) {
+      image = req.file.path;
+    } else {
+      image = existingImage;
+    }
+
+    User.findByIdAndUpdate(userID, { name, description, image }, { new: true })
+      .then((user) => {
+        req.session.currentUser = user;
+        req.app.locals.user = req.session.currentUser;
+        res.redirect(`/auth/${userID}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
-
-  User.findByIdAndUpdate(userID, { name, description, image }, { new: true })
-    .then((user) => {
-      req.session.currentUser = user;
-      req.app.locals.user = req.session.currentUser;
-      res.redirect(`/auth/${userID}`);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+);
 
 router.post("/:id/delete", isLoggedIn, (req, res) => {
   const userID = req.params.id;
@@ -145,12 +150,27 @@ router.post("/:id/delete", isLoggedIn, (req, res) => {
     });
 });
 
+router.get("/visit/:id", isLoggedIn, (req, res) => {
+  const userID = req.params.id;
+  User.findById(userID)
+    .then((userVisit) => {
+      res.render("auth/user-profile-visit", { userVisit });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 router.get("/:id", isLoggedIn, (req, res) => {
   const userID = req.params.id;
   console.log(userID);
   User.findById(userID)
     .then((user) => {
-      res.render("auth/user-profile", { user });
+      res.render("auth/user-profile", {
+        isOwner: isOwner(user, req.session.currentUser),
+        isBussines: isBussines(user),
+        user,
+      });
     })
     .catch((err) => {
       console.log(err);

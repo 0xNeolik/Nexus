@@ -53,11 +53,14 @@ router.post("/create-new-cyber", isLoggedIn, (req, res) => {
 router.get("/details-cyber", isLoggedIn, (req, res, next) => {
   const { id } = req.query;
   Cyber.findById({ _id: id })
+    .populate('owner')
     .then((cyber) => {
-      User.findById(cyber.owner).then((owner) => {
+      User.findById(cyber.owner)
+      .then((owner) => {
         res.render("cybers/cyber-details", {
           isOwner: isOwner(owner, req.session.currentUser),
           cyber,
+          owner
         });
       });
     })
@@ -121,6 +124,16 @@ router.get("/api", (req, res, next) => {
       res.status(200).json({ cybers: allCybers });
     })
     .catch((err) => console.log(err));
+});
+
+router.get("/api/:id/owner", (req, res, next) => {
+  const userID = req.params.id;
+  console.log('------->',userID)
+    Cyber.find({owner: userID})
+    .then((allCybers) =>{
+      res.status(200).json({ cybers: allCybers });
+    })
+  .catch((err) => console.log(err));
 });
 
 router.get("/api/:id", (req, res, next) => {

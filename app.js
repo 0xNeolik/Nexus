@@ -22,5 +22,4 @@ app.locals.user = undefined;
 
 app.locals.keymaps = process.env.APIMAPS;
 
-
 module.exports = app;
