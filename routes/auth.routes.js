@@ -8,7 +8,6 @@ const transporter = require("../config/nodemailer.config");
 const fileUploader = require("../config/cloudinary.config");
 const { isLoggedIn } = require("../middlewares/index");
 
-
 // Signup
 router.get("/signup", (req, res) => res.render("auth/signup"));
 router.post("/signup", (req, res) => {
@@ -45,23 +44,24 @@ router.post("/signup", (req, res) => {
 
           req.session.currentUser = user;
           req.app.locals.user = req.session.currentUser;
+          res.redirect("/");
         });
       })
       .catch((err) => console.log(err));
 
-    transporter
-      .sendMail({
-        from: '"Nexus Sign Up" <Nexus-Cyber@hotmail.com>',
-        to: `${email}`,
-        subject: `${subject}`,
-        text: `${message}`,
-        html: `<b>${message}</b>`,
-      })
-      .then((info) => res.redirect("/"))
-      .catch((error) => {
-        console.log(error);
-      });
-});
+    // transporter
+    //   .sendMail({
+    //     from: '"Nexus Sign Up" <Nexus-Cyber@hotmail.com>',
+    //     to: `${email}`,
+    //     subject: `${subject}`,
+    //     text: `${message}`,
+    //     html: `<b>${message}</b>`,
+    //   })
+    //   .then((info) => res.redirect("/"))
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+  });
 });
 
 // Login

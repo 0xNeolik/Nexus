@@ -5,9 +5,16 @@
 <section class="row justify-content-between">
   <div id="mapIndex" class="col-8 mx-2"></div>
   <ul class="col-3">
-    {{#each cyber}}
+    {{#if isBusiness}}
+      {{!-- {{#each OwnerCybers}}
       <li><a href="/cyber/details-cyber?id={{id}}">{{name}}</a></li>
-    {{/each}}
+    {{/each}} --}}
+      <h1>Business</h1>
+    {{else}}
+      {{#each cyber}}
+        <li><a href="/cyber/details-cyber?id={{id}}">{{name}}</a></li>
+      {{/each}}
+    {{/if}}
   </ul>
 </section>
 
@@ -15,16 +22,10 @@
   <form action="/email/send-email-book" method="GET">
     <input type="email" name="email" value={{user.email}} />
     <input type="text" name="subject" value="Complete your reservation" />
-    <input
-      type="text"
-      name="message"
-      value="Your reservation is already done. Good luck in your games."
-    />
+    <input type="text" name="message" value="Your reservation is already done. Good luck in your games." />
   </form>
 </section>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="/js/MapsAPI/index.js"></script>
-<script
-  src="https://maps.googleapis.com/maps/api/js?libraries=places&key={{keymaps}}&callback=indexMap"
-></script>
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key={{keymaps}}&callback=indexMap"></script>

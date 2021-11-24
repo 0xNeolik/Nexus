@@ -1,26 +1,27 @@
 <h1 class="my-5 text-center">All Cybers</h1>
 <div class="container">
   <div class="column">
+    <form method="POST" action="/places">
+
+      <label>Buscar cyber</label>
+      <input type="text" name="name" placeholder="Cyber's name" />
+
+      <input type="submit" name="" id="submit" />
+    </form>
     <div class="row justify-content-between">
       {{#each AllCybers}}
         <div class="card mb-5 col-md-5" id="card-cyber">
           <a href="/cyber/details-cyber?id={{id}}">
             <div class="row">
               <div class="col-md-4">
-                <img
-                  src="{{image}}"
-                  class="img-fluid rounded-start"
-                  alt="Cyber-Image"
-                />
+                <img src="{{image}}" class="img-fluid rounded-start" alt="Cyber-Image" />
               </div>
               <div class="col-md-8">
                 <div class="card-body">
 
                   <h5 class="card-title">{{name}}</h5>
 
-                  <p class="card-text"><small
-                      class="text-muted"
-                    >{{location_name}}</small></p>
+                  <p class="card-text"><small class="text-muted">{{location_name}}</small></p>
                   <p class="card-text">{{description}}</p>
                 </div>
               </div>

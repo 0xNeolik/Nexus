@@ -36,13 +36,15 @@ router.post("/create-new-cyber", isLoggedIn, (req, res) => {
         let role = user.role;
         if (user.role === "PLAYER") {
           role = "BUSINESS";
-          User.findByIdAndUpdate(user._id, { role }).then((user) => {
-            req.session.currentUser = user;
-            req.app.locals.user = req.session.currentUser;
+          User.findByIdAndUpdate(user._id, { role }, {new: true}).then((updatedUser) => {
+            console.log(updatedUser)
+            req.session.currentUser =updatedUser;
+            console.log("----------------", req.session.currentUser)
+            req.app.locals.user = updatedUser;
+            res.redirect(`details-cyber?id=${cyber.id}`);
           });
         }
       });
-      res.redirect(`details-cyber?id=${cyber.id}`);
     })
     .catch((err) => {
       res.render("/");
