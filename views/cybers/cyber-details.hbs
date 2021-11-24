@@ -8,8 +8,16 @@
       <div class="col-md-8">
         <h4>{{{location_name}}}</h4>
         <p>{{{description}}}</p>
-        <input id="latitude" type="text" value={{location.coordinates.[0]}} hidden />
-        <input id="longitude" type="text" value={{location.coordinates.[1]}} hidden />
+        <input id="latitude" type="text" value={{location.coordinates.0}} hidden />
+        <input id="longitude" type="text" value={{location.coordinates.1}} hidden />
+        <p>Owner:
+          <a href="/auth/visit/{{owner.id}}">
+            {{#each owner}}
+              {{name}}
+            {{/each}}
+          </a>
+        </p>
+
       </div>
       <div id="mapDetails" class="col-md-10"></div>
     </div>

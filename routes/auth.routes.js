@@ -7,6 +7,7 @@ const transporter = require("../config/nodemailer.config");
 
 const fileUploader = require("../config/cloudinary.config");
 const { isLoggedIn } = require("../middlewares/index");
+const { isOwner, isBussines } = require("../utils");
 
 // Signup
 router.get("/signup", (req, res) => res.render("auth/signup"));
@@ -145,12 +146,27 @@ router.post("/:id/delete", isLoggedIn, (req, res) => {
     });
 });
 
+router.get("/visit/:id", isLoggedIn, (req, res) => {
+  const userID = req.params.id;
+  User.findById(userID)
+    .then((userVisit) => {
+      res.render("auth/user-profile-visit", { userVisit });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 router.get("/:id", isLoggedIn, (req, res) => {
   const userID = req.params.id;
   console.log(userID);
   User.findById(userID)
     .then((user) => {
-      res.render("auth/user-profile", { user });
+      res.render("auth/user-profile", {
+        isOwner: isOwner(user, req.session.currentUser),
+        isBussines: isBussines(user),
+        user,
+      });
     })
     .catch((err) => {
       console.log(err);
