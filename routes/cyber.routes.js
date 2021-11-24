@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const Cyber = require("../models/Cyber.model");
 const User = require("../models/User.model");
-const { isLoggedIn } = require("../middlewares/index");
-const { isOwner } = require("../utils/index");
+
+const { isLoggedIn, isOwn } = require("../middlewares");
+const { isOwner } = require("../utils");
 
 const fileUploader = require("../config/cloudinary.config");
 
@@ -45,8 +46,6 @@ router.get("/details-cyber", isLoggedIn, (req, res, next) => {
   Cyber.findById({ _id: id })
     .then((cyber) => {
       User.findById(cyber.owner).then((owner) => {
-        console.log(owner.id);
-        console.log(req.session.currentUser._id);
         res.render("cybers/cyber-details", {
           isOwner: isOwner(owner, req.session.currentUser),
           cyber,
@@ -59,6 +58,7 @@ router.get("/details-cyber", isLoggedIn, (req, res, next) => {
 router.get("/edit", isLoggedIn, (req, res) => {
   const cyberId = req.query.id;
   Cyber.findById(cyberId).then((cyber) => {
+    console.log(cyber);
     res.render("cybers/cyber-edit", { cyber });
   });
 });
