@@ -3,6 +3,8 @@ const bcrypt = require("bcrypt");
 const app = require("../app");
 const User = require("../models/User.model");
 
+const fileUploader = require("../config/cloudinary.config");
+
 // Signup
 router.get("/signup", (req, res) => res.render("auth/signup"));
 router.post("/signup", (req, res) => {
@@ -93,10 +95,20 @@ router.get("/edit", (req, res) => {
     });
 });
 
-router.post("/:id/edit", (req, res) => {
+router.post("/:id/edit", fileUploader.single("new-image"), (req, res) => {
   const userID = req.params.id;
-  const { name, image, description } = req.body;
-  User.findByIdAndUpdate(userID, { name, image, description })
+  const { name, description, existingImage } = req.body;
+
+  console.log("---------------->>>>>> ", req.file); //Undefined
+
+  let imageUrl;
+  if (req.file) {
+    imageUrl = req.file.path;
+  } else {
+    imageUrl = existingImage;
+  }
+
+  User.findByIdAndUpdate(userID, { name, description, imageUrl }, { new: true })
     .then((user) => {
       req.session.currentUser = user;
       req.app.locals.user = req.session.currentUser;
