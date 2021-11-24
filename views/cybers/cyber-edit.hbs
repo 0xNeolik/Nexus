@@ -27,8 +27,8 @@
     <textarea type="text" class="form-control" id="username" name="description">{{cyber.description}}</textarea>
   </div>
 
-  <input type="text" name="lat" id="lat" hidden />
-  <input type="text" name="lng" id="log" hidden />
+  <input type="text" name="lat" id="lat" hidden value={{cyber.location.coordinates.[0]}}>
+  <input type="text" name="lng" id="log" hidden value={{cyber.location.coordinates.[1]}}>
 
   <button type="submit" class="btn btn-dark btn-block" id="create-btn">Create it</button>
 </form>

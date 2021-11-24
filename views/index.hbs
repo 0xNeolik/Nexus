@@ -11,13 +11,7 @@
   </ul>
 </section>
 
-<section>
-  <form action="/email/send-email-signup" method="GET">
-    <input type="email" name="email" value={{user.email}} />
-  </form>
-</section>
-
-<section>
+<section hidden>
   <form action="/email/send-email-book" method="GET">
     <input type="email" name="email" value={{user.email}} />
     <input type="text" name="subject" value="Complete your reservation" />
