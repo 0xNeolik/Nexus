@@ -78,6 +78,8 @@ router.post("/:id/edit", isLoggedIn, fileUploader.single("new-image"), (req, res
     image = existingImage;
   }
 
+  console.log(image);
+
   Cyber.findByIdAndUpdate(
     cyberId,
     {
@@ -89,9 +91,11 @@ router.post("/:id/edit", isLoggedIn, fileUploader.single("new-image"), (req, res
       image,
     },
     { new: true }
-  ).then((cyber) => {
-    res.redirect("/cyber");
-  });
+  )
+    .then((cyber) => {
+      res.redirect("/cyber");
+    })
+    .catch((err) => console.log(err));
 });
 
 router.post("/:id/delete", isLoggedIn, (req, res) => {
