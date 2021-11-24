@@ -30,10 +30,20 @@ router.post("/create-new-cyber", isLoggedIn, (req, res) => {
     ? (data = { location, location_name, name, owner })
     : (data = { location, location_name, name, description, owner });
 
+
   Cyber.create(data)
     .then((cyber) => {
+      User.findById(cyber.owner).then((user)=>{
+        let role = user.role;
+        if(user.role === 'PLAYER'){
+          role = 'BUSINESS'
+          User.findByIdAndUpdate(user._id, {role}).then((user)=>{
+            req.session.currentUser = user;
+            req.app.locals.user = req.session.currentUser;
+          })
+        }
+      })
       res.redirect(`details-cyber?id=${cyber.id}`);
-      req.app.locals.cyber.push(cyber);
     })
     .catch((err) => {
       res.render("/");
@@ -77,7 +87,7 @@ router.post("/:id/edit", isLoggedIn, fileUploader.single("new-image"), (req, res
   } else {
     image = existingImage;
   }
-
+  console.log(location)
   Cyber.findByIdAndUpdate(
     cyberId,
     {
@@ -91,7 +101,8 @@ router.post("/:id/edit", isLoggedIn, fileUploader.single("new-image"), (req, res
     { new: true }
   ).then((cyber) => {
     res.redirect("/cyber");
-  });
+  })
+  .catch((err) => console.log(err));
 });
 
 router.post("/:id/delete", isLoggedIn, (req, res) => {
@@ -111,7 +122,6 @@ router.get("/api", (req, res, next) => {
 
 router.get("/api/:id", (req, res, next) => {
   let cyberId = req.params.id;
-  console.log("--------->", cyberId);
   Cyber.findById(cyberId)
     .then((oneCyberFromDB) => res.status(200).json({ cyber: oneCyberFromDB }))
     .catch((err) => next(err));

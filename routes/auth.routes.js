@@ -48,6 +48,7 @@ router.post("/signup", (req, res) => {
         });
       })
       .catch((err) => console.log(err));
+
     transporter
       .sendMail({
         from: '"Nexus Sign Up" <Nexus-Cyber@hotmail.com>',
