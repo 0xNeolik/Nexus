@@ -4,6 +4,8 @@ const User = require("../models/User.model");
 const { isLoggedIn } = require("../middlewares/index");
 const { isOwner } = require("../utils/index");
 
+const fileUploader = require("../config/cloudinary.config");
+
 router.get("/", isLoggedIn, (req, res) => {
   Cyber.find()
     .then((AllCybers) => {
@@ -12,9 +14,7 @@ router.get("/", isLoggedIn, (req, res) => {
     .catch((err) => console.log(err));
 });
 
-router.get("/create-new-cyber", isLoggedIn, (req, res) =>
-  res.render("bussines/new-cyber")
-);
+router.get("/create-new-cyber", isLoggedIn, (req, res) => res.render("bussines/new-cyber"));
 
 router.post("/create-new-cyber", isLoggedIn, (req, res) => {
   let location = {
@@ -43,18 +43,16 @@ router.post("/create-new-cyber", isLoggedIn, (req, res) => {
 router.get("/details-cyber", isLoggedIn, (req, res, next) => {
   const { id } = req.query;
   Cyber.findById({ _id: id })
-    .then((cyber) =>
-      {
-        User.findById(cyber.owner).then((owner) =>{
-          console.log(owner.id)
-          console.log(req.session.currentUser._id)
-          res.render("cybers/cyber-details", {
-          isCyberOwner: isOwner(owner, req.session.currentUser),
+    .then((cyber) => {
+      User.findById(cyber.owner).then((owner) => {
+        console.log(owner.id);
+        console.log(req.session.currentUser._id);
+        res.render("cybers/cyber-details", {
+          isOwner: isOwner(owner, req.session.currentUser),
           cyber,
-        })
-      })
-    }
-    )
+        });
+      });
+    })
     .catch((err) => next(err));
 });
 
@@ -65,20 +63,33 @@ router.get("/edit", isLoggedIn, (req, res) => {
   });
 });
 
-router.post("/:id/edit", isLoggedIn, (req, res) => {
+router.post("/:id/edit", isLoggedIn, fileUploader.single("new-image"), (req, res) => {
   const cyberId = req.params.id;
   let location = {
     type: "Point",
     coordinates: [req.body.lat, req.body.lng],
   };
-  const { location_name, name, description, owner } = req.body;
-  Cyber.findByIdAndUpdate(cyberId, {
-    location,
-    location_name,
-    name,
-    description,
-    owner,
-  }).then((cyber) => {
+  const { location_name, name, description, owner, existingImage } = req.body;
+
+  let image;
+  if (req.file) {
+    image = req.file.path;
+  } else {
+    image = existingImage;
+  }
+
+  Cyber.findByIdAndUpdate(
+    cyberId,
+    {
+      location,
+      location_name,
+      name,
+      description,
+      owner,
+      image,
+    },
+    { new: true }
+  ).then((cyber) => {
     res.redirect("/cyber");
   });
 });

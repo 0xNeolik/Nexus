@@ -100,16 +100,14 @@ router.post("/:id/edit", isLoggedIn, fileUploader.single("new-image"), (req, res
   const userID = req.params.id;
   const { name, description, existingImage } = req.body;
 
-  console.log("---------------->>>>>> ", req.file); //Undefined
-
-  let imageUrl;
+  let image;
   if (req.file) {
-    imageUrl = req.file.path;
+    image = req.file.path;
   } else {
-    imageUrl = existingImage;
+    image = existingImage;
   }
 
-  User.findByIdAndUpdate(userID, { name, description, imageUrl }, { new: true })
+  User.findByIdAndUpdate(userID, { name, description, image }, { new: true })
     .then((user) => {
       req.session.currentUser = user;
       req.app.locals.user = req.session.currentUser;
