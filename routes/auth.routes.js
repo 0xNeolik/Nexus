@@ -2,7 +2,7 @@ const router = require("express").Router();
 const bcrypt = require("bcrypt");
 const app = require("../app");
 const User = require("../models/User.model");
-
+const { isLoggedIn } = require("../middlewares/index");
 // Signup
 router.get("/signup", (req, res) => res.render("auth/signup"));
 router.post("/signup", (req, res) => {
@@ -82,7 +82,7 @@ router.get("/logout", (req, res) => {
   req.app.locals.user = false;
 });
 
-router.get("/edit", (req, res) => {
+router.get("/edit", isLoggedIn, (req, res) => {
   const userID = req.query.id;
   User.findById(userID)
     .then((user) => {
@@ -93,7 +93,7 @@ router.get("/edit", (req, res) => {
     });
 });
 
-router.post("/:id/edit", (req, res) => {
+router.post("/:id/edit", isLoggedIn, (req, res) => {
   const userID = req.params.id;
   const { name, image, description } = req.body;
   User.findByIdAndUpdate(userID, { name, image, description })
@@ -107,7 +107,7 @@ router.post("/:id/edit", (req, res) => {
     });
 });
 
-router.post("/:id/delete", (req, res) => {
+router.post("/:id/delete", isLoggedIn, (req, res) => {
   const userID = req.params.id;
   User.findByIdAndDelete(userID)
     .then(() => {
@@ -119,7 +119,7 @@ router.post("/:id/delete", (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", isLoggedIn, (req, res) => {
   const userID = req.params.id;
   console.log(userID);
   User.findById(userID)

@@ -11,6 +11,30 @@
   </ul>
 </section>
 
+<section>
+  <form action="/email/send-email-signup" method="GET">
+    <input type="email" name="email" value={{user.email}} />
+    <input type="text" name="subject" value="Welcome to Nexus" />
+    <input
+      type="text"
+      name="message"
+      value="Welcome to Nexus, player. We are glad to have you in our family"
+    />
+  </form>
+</section>
+
+<section>
+  <form action="/email/send-email-book" method="GET">
+    <input type="email" name="email" value={{user.email}} />
+    <input type="text" name="subject" value="Complete your reservation" />
+    <input
+      type="text"
+      name="message"
+      value="Your reservation is already done. Good luck in your games."
+    />
+  </form>
+</section>
+
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="/js/MapsAPI/index.js"></script>
 <script

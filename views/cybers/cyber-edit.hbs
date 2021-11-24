@@ -1,12 +1,12 @@
-<h1>Create your own Cyber</h1>
-<form action="/cyber/create-new-cyber" method="POST">
+<h1>Edit {{cyber.name}}</h1>
+<form action="/cyber/{{cyber.id}}/edit" method="POST">
   <div class="my-5">
     <h5>Cyber`s location</h5>
     <input
       id="searchInput"
       class="controls"
       type="text"
-      placeholder="Enter a location"
+      value={{cyber.location_name}}
       name="location_name"
       required
     />
@@ -14,7 +14,7 @@
   <div id="map"></div>
   <div class="form-group">
     <label for="name">Cyber`s name</label>
-    <input type="text" class="form-control" id="name" name="name" required />
+    <input type="text" class="form-control" id="name" name="name" required value={{cyber.name}}>
   </div>
   <div class="form-group">
     <label for="description">Description</label>
@@ -23,21 +23,11 @@
       class="form-control"
       id="username"
       name="description"
-    ></textarea>
+    >{{cyber.description}}</textarea>
   </div>
-  <input type="text" name="owner" id="owner-cyber" value={{user.id}} hidden/>
+
   <input type="text" name="lat" id="lat" hidden />
   <input type="text" name="lng" id="log" hidden />
-  {{! <div class="form-group">
-    <label for="location">Cyber`s location</label>
-    <input
-      type="password"
-      class="form-control"
-      id="location"
-      name="location"
-      required
-    />
-  </div> }}
 
   <button type="submit" class="btn btn-dark btn-block" id="create-btn">Create it</button>
 </form>
