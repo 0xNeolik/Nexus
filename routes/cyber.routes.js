@@ -15,34 +15,37 @@ router.get("/", isLoggedIn, (req, res) => {
     .catch((err) => console.log(err));
 });
 
-router.get("/create-new-cyber", isLoggedIn, (req, res) => res.render("bussines/new-cyber"));
+router.get("/create-new-cyber", isLoggedIn, (req, res) =>
+  res.render("bussines/new-cyber")
+);
 
 router.post("/create-new-cyber", isLoggedIn, (req, res) => {
   let location = {
     type: "Point",
     coordinates: [req.body.lat, req.body.lng],
   };
-
   const { location_name, name, description, owner } = req.body;
   let data = {};
-
   description.length === 0
     ? (data = { location, location_name, name, owner })
     : (data = { location, location_name, name, description, owner });
-
   Cyber.create(data)
     .then((cyber) => {
       User.findById(cyber.owner).then((user) => {
         let role = user.role;
         if (user.role === "PLAYER") {
           role = "BUSINESS";
-          User.findByIdAndUpdate(user._id, { role }, {new: true}).then((updatedUser) => {
-            console.log(updatedUser)
-            req.session.currentUser =updatedUser;
-            console.log("----------------", req.session.currentUser)
-            req.app.locals.user = updatedUser;
-            res.redirect(`details-cyber?id=${cyber.id}`);
-          });
+          User.findByIdAndUpdate(user._id, { role }, { new: true }).then(
+            (updatedUser) => {
+              req.session.currentUser = updatedUser;
+              req.app.locals.user = updatedUser;
+              res.redirect(`details-cyber?id=${cyber.id}`);
+            }
+          );
+        } else {
+          req.session.currentUser = user;
+          req.app.locals.user = user;
+          res.redirect(`details-cyber?id=${cyber.id}`);
         }
       });
     })
@@ -55,14 +58,13 @@ router.post("/create-new-cyber", isLoggedIn, (req, res) => {
 router.get("/details-cyber", isLoggedIn, (req, res, next) => {
   const { id } = req.query;
   Cyber.findById({ _id: id })
-    .populate('owner')
+    .populate("owner")
     .then((cyber) => {
-      User.findById(cyber.owner)
-      .then((owner) => {
+      User.findById(cyber.owner).then((owner) => {
         res.render("cybers/cyber-details", {
           isOwner: isOwner(owner, req.session.currentUser),
           cyber,
-          owner
+          owner,
         });
       });
     })
@@ -77,41 +79,46 @@ router.get("/edit", isLoggedIn, (req, res) => {
   });
 });
 
-router.post("/:id/edit", isLoggedIn, fileUploader.single("new-image"), (req, res) => {
-  const cyberId = req.params.id;
-  let location = {
-    type: "Point",
-    coordinates: [req.body.lat, req.body.lng],
-  };
-  const { location_name, name, description, owner, existingImage } = req.body;
+router.post(
+  "/:id/edit",
+  isLoggedIn,
+  fileUploader.single("new-image"),
+  (req, res) => {
+    const cyberId = req.params.id;
+    let location = {
+      type: "Point",
+      coordinates: [req.body.lat, req.body.lng],
+    };
+    const { location_name, name, description, owner, existingImage } = req.body;
 
-  let image;
-  if (req.file) {
-    image = req.file.path;
-  } else {
-    image = existingImage;
+    let image;
+    if (req.file) {
+      image = req.file.path;
+    } else {
+      image = existingImage;
+    }
+
+    console.log(image);
+
+    console.log(location);
+    Cyber.findByIdAndUpdate(
+      cyberId,
+      {
+        location,
+        location_name,
+        name,
+        description,
+        owner,
+        image,
+      },
+      { new: true }
+    )
+      .then((cyber) => {
+        res.redirect("/cyber");
+      })
+      .catch((err) => console.log(err));
   }
-
-  console.log(image);
-
-  console.log(location);
-  Cyber.findByIdAndUpdate(
-    cyberId,
-    {
-      location,
-      location_name,
-      name,
-      description,
-      owner,
-      image,
-    },
-    { new: true }
-  )
-    .then((cyber) => {
-      res.redirect("/cyber");
-    })
-    .catch((err) => console.log(err));
-});
+);
 
 router.post("/:id/delete", isLoggedIn, (req, res) => {
   const cyberId = req.params.id;
@@ -130,12 +137,12 @@ router.get("/api", (req, res, next) => {
 
 router.get("/api/:id/owner", (req, res, next) => {
   const userID = req.params.id;
-  console.log('------->',userID)
-    Cyber.find({owner: userID})
-    .then((allCybers) =>{
+  console.log("------->", userID);
+  Cyber.find({ owner: userID })
+    .then((allCybers) => {
       res.status(200).json({ cybers: allCybers });
     })
-  .catch((err) => console.log(err));
+    .catch((err) => console.log(err));
 });
 
 router.get("/api/:id", (req, res, next) => {

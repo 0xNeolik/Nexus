@@ -1,23 +1,75 @@
-<section class="container">
-  <div class="row" id="news-container">
+<section class="text-center" id="inicial-section">
+  <h1>Welcome to Nexus players</h1>
+  <div class="d-flex justify-content-center mt-4">
+  <p class="col-6 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, ea quisquam deserunt consectetur reiciendis quam eveniet hic sunt asperiores.Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, ea quisquam deserunt consectetur reiciendis quam eveniet hic sunt asperiores, ipsum est, possimus id quia sint aut optio eos dolore excepturi?</p>
+        </div>
+        <svg width="200" height="300" viewBox="0 0 119 180" fill="none" xmlns="http://www.w3.org/2000/svg" id="inicial-logo">
+        <g clip-path="url(#clip0_20_29)">
+        <path d="M96.1781 47.2738C88.8425 53.7944 85.5822 66.0204 83.9521 72.5409C82.3219 79.0615 78.2466 101.883 78.2466 101.883C84.4519 94.7395 89.6613 86.7883 93.7329 78.2464C100.253 64.3902 96.1781 47.2738 96.1781 47.2738Z" fill="white"/>
+        <path d="M107.589 118.185C114.925 107.589 118.185 86.3972 110.034 70.9109L68.4658 165.459C68.4658 165.459 100.343 128.65 107.589 118.185Z" fill="white"/>
+        <path d="M68.4658 178.206C88.0275 171.164 97.1481 166.372 106.774 158.123C118.185 148.342 119 133.671 119 133.671L68.4658 178.206Z" fill="white"/>
+        <path d="M59.5001 -0.00012207L2.44531 8.15056L17.9316 38.3081H44.8289L59.5001 179.315L74.1713 38.3081H101.069L116.555 8.15056L59.5001 -0.00012207Z" fill="white"/>
+        <path d="M59.5001 -0.00012207L2.44531 8.15056L17.9316 38.3081H44.8289L59.5001 179.315L74.1713 38.3081H101.069L116.555 8.15056L59.5001 -0.00012207Z" fill="white"/>
+        <path d="M35.0481 72.5409C33.4179 66.0204 30.1576 53.7944 22.822 47.2738C22.822 47.2738 18.7467 64.3902 25.2672 78.2464C29.3388 86.7883 34.5482 94.7395 40.7535 101.883C40.7535 101.883 36.6782 79.0615 35.0481 72.5409Z" fill="white"/>
+        <path d="M11.4109 118.185C18.6568 128.65 50.5341 165.459 50.5341 165.459L8.96565 70.9109C0.814962 86.3972 4.07524 107.589 11.4109 118.185Z" fill="white"/>
+        <path d="M12.226 158.123C21.852 166.372 30.9726 171.164 50.5342 178.206L0 133.671C0 133.671 0.815069 148.342 12.226 158.123Z" fill="white"/>
+        </g>
+        <defs>
+        <clipPath id="clip0_20_29">
+        <rect width="119" height="179.315" fill="white"/>
+        </clipPath>
+        </defs>
+        </svg>
+</section>
+<section id="second-section">
+  <div class="row">
+        <div class="col-5 mb-5">
+          <img src="images/img1.jpeg">
+        </div>
+        <div class="col-6 mx-5"><h2>Lorem ipsum dolor sit</h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias mollitia magnam quas voluptas eligendi voluptate provident molestias fuga placeat! Ducimus corrupti quae quas at suscipit totam labore sequi magni nesciunt?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias mollitia magnam quas voluptas eligendi voluptate provident molestias fuga placeat! Ducimus corrupti quae quas at suscipit totam labore sequi magni nesciunt?</div>
+        <div class="col-6" id="text-second-section"><h2>Lorem ipsum dolor sit</h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias mollitia magnam quas voluptas eligendi voluptate provident molestias fuga placeat! Ducimus corrupti quae quas at suscipit totam labore sequi magni nesciunt?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias mollitia magnam quas voluptas eligendi voluptate provident molestias fuga placeat! Ducimus corrupti quae quas at suscipit totam labore sequi magni nesciunt?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste nobis quibusdam quaerat quia illo quidem, quae ad quos provident, assumenda adipisci placeat, dolorum aliquam tenetur esse eos ratione error alias?</div>
+        <div class="col-5 mb-5">
+          <img src="images/img2.jpeg">
+        </div>
+        <div class="col-5 mb-5">
+          <img src="images/img3.jpeg">
+        </div>
+        <div class="col-6 mx-5"><h2>Lorem ipsum dolor sit</h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias mollitia magnam quas voluptas eligendi voluptate provident molestias fuga placeat! Ducimus corrupti quae quas at suscipit totam labore sequi magni nesciunt?Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, vitae minima ratione explicabo voluptatibus vero natus nulla incidunt eius corporis aperiam, repellat laboriosam! Hic unde reiciendis voluptate in? Consequuntur, dolorem?</div>
   </div>
 </section>
-<section class="row justify-content-between">
-  <div id="mapIndex" class="col-8 mx-2"></div>
-  <ul class="col-3">
-    {{#if isBusiness}}
-      {{!-- {{#each OwnerCybers}}
-      <li><a href="/cyber/details-cyber?id={{id}}">{{name}}</a></li>
-    {{/each}} --}}
-      <h1>Business</h1>
-    {{else}}
-      {{#each cyber}}
-        <li><a href="/cyber/details-cyber?id={{id}}">{{name}}</a></li>
-      {{/each}}
-    {{/if}}
-  </ul>
+
+<section id="third-section">
+  <h1 class="text-center">Our Cybers are around the World!
+  </h1>
+  <div class="row justify-content-between">
+    <input type="text" value='{{user.id}}' id="userID" hidden>
+      {{#if isBusiness}}
+        <div id="MapBusiness" class="col-7"></div>
+        <div class="col-3">
+          <h1>You own Cybers</h1>
+            <ul>
+                {{#each cyberFiltered}}
+                  <li><a href="/cyber/details-cyber?id={{id}}">{{name}}</a></li>
+                {{/each}}
+            </ul>
+        </div>  
+      {{else}}
+        <div id="mapIndex" class="col-7"></div>
+        <div class="col-3">
+          <h1>All our Cybers</h1>
+          <ul>
+            {{#each cyber}}
+              <li><a href="/cyber/details-cyber?id={{id}}">{{name}}</a></li>
+            {{/each}}
+          </ul>
+      {{/if}}
+  </div>
 </section>
 
+<section id="quarter-section">
+  <div class="row " id="news-container">
+  </div>
+</section>
 <section hidden>
   <form action="/email/send-email-book" method="GET">
     <input type="email" name="email" value={{user.email}} />
@@ -25,7 +77,69 @@
     <input type="text" name="message" value="Your reservation is already done. Good luck in your games." />
   </form>
 </section>
-
+   <footer class="small bg-light">
+   <div class="container py-3 py-sm-5">
+      <div class="row">
+         <div class="col-12 col-sm-6 col-md-3">
+         <h6>Quick links</h6>
+         <ul class="list-unstyled">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">What's new</a></li>
+            <li><a href="#">Featured Product</a></li>
+            <li><a href="#">News letter</a></li>
+            <li><a href="#">My account</a></li>
+         </ul>
+         </div>
+         <div class="col-12 col-sm-6 col-md-3">
+         <h6>Information</h6>
+         <ul class="list-unstyled">
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Membership</a></li>
+            <li><a href="#">Shipping &amp; returns</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Sitemap</a></li>
+         </ul>
+         </div>
+         <div class="col-12 col-sm-6 col-md-3">
+         <h6>Follow us</h6>
+         <ul class="list-unstyled">
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">YouTube</a></li>
+         </ul>
+         </div>
+         <div class="col-12 col-sm-6 col-md-3">
+         <address>
+            <strong>BIET Jhansi</strong><br />
+            Panchwati Hostel<br />
+            Jhansi, Uttar Pradesh<br />
+            <abbr title="Telephone">T:</abbr
+            ><a href="tel:+919876543210">(987) 654-3210</a><br />
+            <abbr title="Mail">M:</abbr
+            ><a href="mailto:info@domain.com">info@domain.com</a>
+         </address>
+         </div>
+      </div>
+      <div class="row mt-4">
+         <div class="col-12 col-sm-6 col-md-9">
+         <ul class="list-inline">
+            <li class="list-inline-item">&copy; 2021 Web Company, Inc.</li>
+            <li class="list-inline-item">All rights reserved.</li>
+            <li class="list-inline-item">
+               <a href="#">Terms of use and privacy policy</a>
+            </li>
+         </ul>
+         </div>
+      </div>
+   </div>
+   </footer>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="/js/MapsAPI/index.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key={{keymaps}}&callback=indexMap"></script>
+  {{#if isBusiness}}
+      <script
+        src="https://maps.googleapis.com/maps/api/js?libraries=places&key={{keymaps}}&callback=BunisessMap"
+      ></script>
+  {{/if}}

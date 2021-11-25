@@ -1,5 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin-top: 50px;
+  color: white;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(80, 9, 147, 1) 50%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
 nav a {
   color: white;
+}
+img {
+  width: 100%;
 }
 
 a:hover {
@@ -8,7 +27,7 @@ a:hover {
 }
 
 a {
-  color: black;
+  color: white;
 }
 
 h1 {
@@ -36,16 +55,34 @@ input {
 
 #mapIndex {
   height: 450px;
-  width: 80%;
+  margin-left: 200px;
 }
 
 #MapBusiness {
-  height: 450px;
-  width: 80%;
+  height: 500px;
+  margin-left: 200px;
 }
+
+#MapProfile {
+  height: 500px;
+  margin: 0 auto;
+}
+
 #mapDetails {
   height: 450px;
   width: 80%;
+}
+
+#mapIndex,
+#MapBusiness,
+#MapProfile {
+  color: black;
+}
+
+#mapIndex a,
+#MapBusiness a,
+#MapProfile a {
+  color: black;
 }
 
 #editMapDetails {
@@ -71,6 +108,10 @@ input {
   background-color: rgb(247, 247, 247);
 }
 
+#card-cyber a {
+  color: black;
+}
+
 #card-cyber p {
   color: black;
 }
@@ -79,4 +120,110 @@ input {
   text-decoration: none;
   transform: scale(1.1);
   border: 2px solid #7412d0;
+}
+
+#news-container {
+  display: flex;
+  justify-content: space-evenly;
+  color: black;
+}
+
+#news-container a {
+  color: black;
+}
+
+#news-container div {
+  transition: transform 0.2s;
+}
+
+#news-container div:hover {
+  text-decoration: none;
+  transform: scale(0.9);
+}
+
+#inicial-section {
+  color: white;
+  padding-top: 100px;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgb(27, 27, 27) 0%,
+    rgba(80, 9, 147, 1) 100%
+  );
+}
+
+#inicial-logo {
+  margin: 100px 0;
+  transition: transform 0.2s;
+}
+#inicial-logo:hover {
+  text-decoration: none;
+  transform: scale(1.2);
+}
+
+#second-section {
+  padding-top: 50px;
+  color: white;
+  background: rgb(80, 9, 147);
+  background: linear-gradient(
+    180deg,
+    rgba(80, 9, 147, 1) 0%,
+    rgb(0, 0, 0) 100%
+  );
+}
+
+#second-section img {
+  height: 80%;
+  width: 80%;
+  margin: 0 10%;
+}
+
+#text-second-section {
+  margin-left: 100px;
+}
+
+#third-section {
+  color: white;
+  padding-bottom: 100px;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(80, 9, 147, 1) 100%
+  );
+}
+#third-section h1 {
+  padding-bottom: 50px;
+}
+
+#third-section a:hover {
+  color: (27, 27, 27);
+}
+#quarter-section {
+  padding-bottom: 50px;
+  background: rgb(80, 9, 147);
+  background: linear-gradient(
+    180deg,
+    rgba(80, 9, 147, 1) 0%,
+    rgb(8, 1, 16, 1) 100%
+  );
+}
+
+footer {
+  color: white;
+  background: rgb(8, 1, 16);
+  background: linear-gradient(
+    180deg,
+    rgba(8, 1, 16, 1) 0%,
+    rgba(80, 9, 147, 1) 100%
+  );
+}
+#signup-frame,
+#login-frame,
+#visit-profile-frame {
+  padding-bottom: 500px;
+}
+#visit-profile-frame,
+#profile-frame {
+  padding-top: 100px;
 }

@@ -1,14 +1,12 @@
-<div class="container text-center mt-5">
+<div class="container text-center" id="profile-frame">
   <img src="{{user.image}}" alt="" id="user-img-profile" />
   <h1 class="my-5">{{user.name}}</h1>
   <p>
     <small class="text-muted">{{user.description}}</small>
   </p>
-  <input type="text" value='{{user.id}}' id="userID" hidden>
+  <input type="text" value="{{user.id}}" id="userID" hidden />
   {{#if isOwner}}
-    {{#if isBussines}}
-      <div id="MapBusiness"></div>
-    {{/if}}
+    <div id="MapProfile"></div>
     <div class="col-12 mb-3 mt-5">
       <a href="/auth/edit?id={{user._id}}" class="btn btn-dark mx-5">Edit
         Profile</a>
