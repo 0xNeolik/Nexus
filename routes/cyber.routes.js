@@ -32,14 +32,11 @@ router.post("/create-new-cyber", isLoggedIn, (req, res) => {
     type: "Point",
     coordinates: [req.body.lat, req.body.lng],
   };
-
   const { location_name, name, description, owner } = req.body;
   let data = {};
-
   description.length === 0
     ? (data = { location, location_name, name, owner })
     : (data = { location, location_name, name, description, owner });
-
   Cyber.create(data)
     .then((cyber) => {
       User.findById(cyber.owner).then((user) => {
@@ -88,41 +85,46 @@ router.get("/edit", isLoggedIn, (req, res) => {
   });
 });
 
-router.post("/:id/edit", isLoggedIn, fileUploader.single("new-image"), (req, res) => {
-  const cyberId = req.params.id;
-  let location = {
-    type: "Point",
-    coordinates: [req.body.lat, req.body.lng],
-  };
-  const { location_name, name, description, owner, existingImage } = req.body;
+router.post(
+  "/:id/edit",
+  isLoggedIn,
+  fileUploader.single("new-image"),
+  (req, res) => {
+    const cyberId = req.params.id;
+    let location = {
+      type: "Point",
+      coordinates: [req.body.lat, req.body.lng],
+    };
+    const { location_name, name, description, owner, existingImage } = req.body;
 
-  let image;
-  if (req.file) {
-    image = req.file.path;
-  } else {
-    image = existingImage;
+    let image;
+    if (req.file) {
+      image = req.file.path;
+    } else {
+      image = existingImage;
+    }
+
+    console.log(image);
+
+    console.log(location);
+    Cyber.findByIdAndUpdate(
+      cyberId,
+      {
+        location,
+        location_name,
+        name,
+        description,
+        owner,
+        image,
+      },
+      { new: true }
+    )
+      .then((cyber) => {
+        res.redirect("/cyber");
+      })
+      .catch((err) => console.log(err));
   }
-
-  console.log(image);
-
-  console.log(location);
-  Cyber.findByIdAndUpdate(
-    cyberId,
-    {
-      location,
-      location_name,
-      name,
-      description,
-      owner,
-      image,
-    },
-    { new: true }
-  )
-    .then((cyber) => {
-      res.redirect("/cyber");
-    })
-    .catch((err) => console.log(err));
-});
+);
 
 router.post("/:id/delete", isLoggedIn, (req, res) => {
   const cyberId = req.params.id;

@@ -61,7 +61,7 @@ function initMap() {
     const long = document.querySelector("#log");
     long.value = lng;
   });
-};
+}
 
 function indexMap() {
   const ironhackMAD = {
@@ -130,40 +130,82 @@ function placeMarkers(mapIndex, cybers) {
   return markers;
 }
 
-function ProfileMap() {
+function BunisessMap() {
   const ironhackMAD = {
     lat: 40.3977381,
     lng: -3.690471916,
   };
-  const mapProfile = new google.maps.Map(document.getElementById("MapBusiness"), {
-    zoom: 14,
-    center: ironhackMAD,
-  });
+  const mapProfile = new google.maps.Map(
+    document.getElementById("MapBusiness"),
+    {
+      zoom: 14,
+      center: ironhackMAD,
+    }
+  );
 
   // Markers
   getCybersBusiness()
     .then((cybers) => {
       const markers = cyberProfileMarkers(mapProfile, cybers);
-      console.log(markers)
+      console.log(markers);
+    })
+    .catch((error) => console.log(error));
+}
+
+function ProfileMap() {
+  const ironhackMAD = {
+    lat: 40.3977381,
+    lng: -3.690471916,
+  };
+  const mapProfile = new google.maps.Map(
+    document.getElementById("MapProfile"),
+    {
+      zoom: 14,
+      center: ironhackMAD,
+    }
+  );
+
+  // Markers
+  getCybersBusiness()
+    .then((cybers) => {
+      const markers = cyberProfileMarkers(mapProfile, cybers);
+      console.log(markers);
     })
     .catch((error) => console.log(error));
 }
 
 function getCybersBusiness() {
-  const id = document.querySelector('#userID').value
-  console.log('------->',id)
-  return axios.get(`/cyber/api/${id}/owner`).then((response) => response.data.cybers);
+  const id = document.querySelector("#userID").value;
+  console.log("------->", id);
+  return axios
+    .get(`/cyber/api/${id}/owner`)
+    .then((response) => response.data.cybers);
 }
 
 function cyberProfileMarkers(mapProfile, cybers) {
   const markers = [];
-  console.log('--------->',cybers)
   cybers.forEach((cyber) => {
+    let infowindow = new google.maps.InfoWindow();
+
+    infowindow.setContent(
+      "<div><strong>" +
+        "<a href=/cyber/details-cyber?id=" +
+        cyber._id +
+        ">" +
+        cyber.name +
+        "</a>" +
+        "</strong><br>" +
+        "<br>" +
+        cyber.location_name +
+        "<br>" +
+        "<br>" +
+        cyber.description
+    );
     const center = {
       lat: cyber.location.coordinates[0],
       lng: cyber.location.coordinates[1],
     };
-    
+
     const newMarker = new google.maps.Marker({
       position: center,
       map: mapProfile,
@@ -173,13 +215,19 @@ function cyberProfileMarkers(mapProfile, cybers) {
         scaledSize: new google.maps.Size(55, 45),
       },
     });
+    newMarker.addListener("click", () => {
+      infowindow.open(mapProfile, newMarker);
+      setTimeout(() => {
+        infowindow.close();
+      }, 4000);
+    });
     markers.push(newMarker);
   });
   return markers;
 }
 
-const mapLatitude = Number(document.querySelector('#latitude').value)
-const mapLongitude = Number(document.querySelector('#longitude').value)
+const mapLatitude = Number(document.querySelector("#latitude").value);
+const mapLongitude = Number(document.querySelector("#longitude").value);
 
 function DetailsMap() {
   const Cyber = {
@@ -196,8 +244,7 @@ function DetailsMap() {
 
   //Markers
 
-  cyberMarkers(mapDetails, mapLatitude, mapLongitude)
-
+  cyberMarkers(mapDetails, mapLatitude, mapLongitude);
 }
 
 function getCyber() {
@@ -221,4 +268,3 @@ function cyberMarkers(mapDetails, lat, lng) {
   });
   return newMarker;
 }
-

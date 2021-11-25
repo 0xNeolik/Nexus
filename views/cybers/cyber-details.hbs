@@ -1,51 +1,54 @@
-<div class="container cyber-details">
-  {{#if isOwner}}
-    {{#with cyber}}
-      <h1>{{{name}}}</h1>
-      <div class="row">
-        <div class="col-md-4 img">
-          <img src={{{image}}} alt="Cyber-image" />
-        </div>
-        <div class="col-md-8">
-          <h4>{{{location_name}}}</h4>
-          <p>{{{description}}}</p>
-          <input id="latitude" type="text" value={{location.coordinates.[0]}} hidden />
-          <input id="longitude" type="text" value={{location.coordinates.[1]}} hidden />
-          <p>Owner:
-            <a href="/auth/{{owner.id}}">
-              {{#each owner}}
-                {{name}}
-              {{/each}}
-            </a>
-          </p>
-        </div>
-        <div id="mapDetails" class="col-md-10 justify-content-center"></div>
+<div class="container">
+{{#if isOwner}}
+  {{#with cyber}}
+    <h1>{{{name}}}</h1>
+    <div class="row">
+      <div class="col-md-4 img">
+        <img src={{{image}}} alt="Cyber-image" />
       </div>
-    {{/with}}
-  {{else}}
-    {{#with cyber}}
-      <h1>{{{name}}}</h1>
-      <div class="row">
-        <div class="col-md-4 img">
-          <img src={{{image}}} alt="Cyber-image" />
-        </div>
-        <div class="col-md-8">
-          <h4>{{{location_name}}}</h4>
-          <p>{{{description}}}</p>
-          <input id="latitude" type="text" value={{location.coordinates.[0]}} hidden />
-          <input id="longitude" type="text" value={{location.coordinates.[1]}} hidden />
-          <p>Owner:
-            <a href="/auth/visit/{{owner.id}}">
-              {{#each owner}}
-                {{name}}
-              {{/each}}
-            </a>
-          </p>
-        </div>
-        <div id="mapDetails" class="col-md-10 justify-content-center"></div>
+      <div class="col-md-8">
+        <h4>{{{location_name}}}</h4>
+        <p>{{{description}}}</p>
+        <input id="latitude" type="text" value={{location.coordinates.[0]}} hidden />
+        <input id="longitude" type="text" value={{location.coordinates.[1]}} hidden />
+        <p>Owner:
+          <a href="/auth/{{owner.id}}">
+            {{#each owner}}
+              {{name}}
+            {{/each}}
+          </a>
+        </p>
+
       </div>
-    {{/with}}
-  {{/if}}
+      <div id="mapDetails" class="col-md-10"></div>
+    </div>
+  {{/with}}
+{{else}}
+  {{#with cyber}}
+    <h1>{{{name}}}</h1>
+    <div class="row">
+      <div class="col-md-4 img">
+        <img src={{{image}}} alt="Cyber-image" />
+      </div>
+      <div class="col-md-8">
+        <h4>{{{location_name}}}</h4>
+        <p>{{{description}}}</p>
+        <input id="latitude" type="text" value={{location.coordinates.[0]}} hidden />
+        <input id="longitude" type="text" value={{location.coordinates.[1]}} hidden />
+        <p>Owner:
+
+          <a href="/auth/visit/{{owner.id}}">
+            {{#each owner}}
+              {{name}}
+            {{/each}}
+          </a>
+        </p>
+
+      </div>
+      <div id="mapDetails" class="col-md-10"></div>
+    </div>
+  {{/with}}
+{{/if}}
   <div class="d-flex row cyber-details-buttons">
     <a href="/cyber" class="btn btn-dark mx-3">Back to Cybers</a>
     <a href="/cyber/book-cyber?id={{id}}" class="btn btn-dark mx-3">Book a PC</a>
