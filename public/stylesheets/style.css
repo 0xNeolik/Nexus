@@ -89,9 +89,10 @@ input {
   height: 450px;
   width: 80%;
 }
-.card img {
-  width: 400px;
-  height: 320px;
+
+#Cyber-image {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -108,6 +109,13 @@ input {
 #card-cyber {
   transition: transform 0.2s;
   background-color: rgb(247, 247, 247);
+  border: none;
+}
+
+#card-cyber:hover {
+  text-decoration: none;
+  transform: scale(1.05);
+  border: 3px solid green;
 }
 
 #card-cyber a {
@@ -118,12 +126,6 @@ input {
   color: black;
 }
 
-#card-cyber:hover {
-  text-decoration: none;
-  transform: scale(1.1);
-  border: 2px solid #7412d0;
-}
-
 #all-cyber-section {
   margin-top: 20px;
 }
@@ -132,17 +134,9 @@ input {
   padding: 0%;
 }
 
-.img{
-  object-fit: cover;
-  padding: 0%;
-  }
-.img img{
-  width: 100%;
-}
 
-.cyber-details{
+.cyber-details {
   margin: 100px;
-  
 }
 
 .cyber-details a {
@@ -153,7 +147,7 @@ input {
   margin: 50px;
 }
 
-.cyber-details-buttons{
+.cyber-details-buttons {
   justify-content: center;
 }
 #news-container {
@@ -234,15 +228,15 @@ input {
   color: (27, 27, 27);
 }
 #quarter-section {
-  padding-bottom: 50px;
-  background: rgb(80, 9, 147);
-  background: linear-gradient(
-    180deg,
-    rgba(80, 9, 147, 1) 0%,
-    rgb(8, 1, 16, 1) 100%
-  );
+  padding: 75px 0;
+  background: rgb(36,4,69);
+  background: linear-gradient(180deg, rgba(36,4,69,1) 0%, rgba(10,2,21,1) 100%);
 }
-
+#calendar-section{
+  padding-bottom:100px;
+  background: rgb(79,9,145);
+  background: linear-gradient(180deg, rgba(79,9,145,1) 0%, rgba(36,5,68,1) 100%);
+}
 footer {
   color: white;
   background: rgb(8, 1, 16);
@@ -260,4 +254,14 @@ footer {
 #visit-profile-frame,
 #profile-frame {
   padding-top: 100px;
+}
+#calendar{
+  color: black;
+  background-color: white;
+  max-width: 1100px;
+  height: 500px;
+  margin: 0 auto ;
+}
+#calendar a{
+  color: black;
 }

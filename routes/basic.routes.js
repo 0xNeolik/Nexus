@@ -1,23 +1,32 @@
 const router = require("express").Router();
 const Cyber = require("../models/Cyber.model");
 const User = require("../models/User.model");
+const APIHandler = require ('../services/APIHandler')
+const { isBusiness } = require("../utils");
 
-const { isBusiness,isOwnerCyber } = require("../utils");
+const newsAPI = new APIHandler();
 
-/* GET home page */
 router.get("/", (req, res) => {
-  Cyber.find()
-    .then((cyber) => {
-      console.log(req.session.currentUser)
+
+  const newsResponse = newsAPI.getFullList()
+  const cyber = Cyber.find()
+
+  Promise.all([newsResponse, cyber])
+    .then(data => {
+      const [newsResponse, cyber] = data
+
+      const news = newsResponse.data.articles
+
       if (req.session.currentUser) {
         const cyberFiltered = cyber.filter((el) =>{
           return el.owner == req.session.currentUser._id
         })
-        res.render("index", { isBusiness: isBusiness(req.session.currentUser), cyber, cyberFiltered });
+        res.render("index", { isBusiness: isBusiness(req.session.currentUser), cyber, cyberFiltered, news });
         return
       }
-      res.render("index", { cyber });
+      res.render("index", { cyber, news });
       return
+
     })
     .catch((err) => console.log(err));
 });

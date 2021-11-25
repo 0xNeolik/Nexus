@@ -17,15 +17,13 @@
       {{#each AllCybers}}
         <div class="card mb-5 col-md-5" id="card-cyber" style="max-width: 540px;">
           <a href="/cyber/details-cyber?id={{id}}">
-            <div class="row g-0">
+            <div class="row">
               <div class="col-md-4" id="img-space">
-                <img src="{{image}}" class="img-fluid rounded-start" alt="Cyber-Image" />
+                <img src="{{image}}" alt="Cyber-Image" id="Cyber-image"/>
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-
                   <h5 class="card-title">{{name}}</h5>
-
                   <p class="card-text"><small
                       class="text-muted"
                     >{{location_name}}</small></p>

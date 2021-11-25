@@ -22,4 +22,6 @@ app.locals.user = undefined;
 
 app.locals.keymaps = process.env.APIMAPS;
 
+app.locals.keynews =  process.env.APINEWS;
+
 module.exports = app;

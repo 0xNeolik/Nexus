@@ -5,11 +5,11 @@ const bookSchema = new Schema(
   {
     cyber_id: { type: Schema.Types.ObjectId, ref: "Cyber" },
     date: {
-      type: Date,
-      required: true,
+      type: Date
     },
     participants: Number,
     owner: { type: Schema.Types.ObjectId, ref: "User" },
+    userBooking: { type: Schema.Types.ObjectId, ref: "User" },
   },
   {
     timestamps: true,

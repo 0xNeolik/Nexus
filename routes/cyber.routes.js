@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const Cyber = require("../models/Cyber.model");
 const User = require("../models/User.model");
+const Book = require("../models/Book.model");
 
-const { isLoggedIn, isOwn } = require("../middlewares");
+const { isLoggedIn } = require("../middlewares");
 const { isOwner } = require("../utils");
 
 const fileUploader = require("../config/cloudinary.config");
@@ -132,6 +133,27 @@ router.post("/:id/delete", isLoggedIn, (req, res) => {
     res.redirect("/cyber");
   });
 });
+ 
+router.get("/book-cyber", isLoggedIn, (req, res) => {
+  const cyberId = req.query.id;
+  Cyber.findById(cyberId).then((cyber) => {
+    res.render("cybers/book-cyber", { cyber });
+  });
+});
+
+router.post("/:id/book", isLoggedIn, (req, res) => {
+  const { participants, date, } = req.body;
+  const cyber_id = req.params.id;
+  const userBooking = req.session.currentUser._id
+  Book.create({ participants, date,  cyber_id, userBooking })
+  .then((cyberBook) => {
+    // cyberBook.date.setHours(cyberBook.date.getHours()+1);
+    // Book.findByIdAndUpdate(cyberBook.id,{participants, date:cyberBook.date,  cyber_id, userBooking}).then(()=>{
+      res.redirect("/cyber");
+    // })
+  });
+});
+
 
 router.get("/api", (req, res, next) => {
   Cyber.find()
@@ -141,9 +163,29 @@ router.get("/api", (req, res, next) => {
     .catch((err) => console.log(err));
 });
 
+
+
+
+router.get("/api/calendar", (req, res, next) => {
+  const userId = req.session.currentUser
+  console.log(userId)
+  Book.find({userBooking:userId})
+    .populate('cyber_id')
+    .then((allBooks) => {
+        const books = allBooks.map(book => {
+          return {
+            title:book.cyber_id.name,
+            start:book.date
+          }
+        })
+        res.status(200).json(books);
+      })
+      .catch((err) => console.log(err));
+    })
+    
+
 router.get("/api/:id/owner", (req, res, next) => {
   const userID = req.params.id;
-  console.log("------->", userID);
   Cyber.find({ owner: userID })
     .then((allCybers) => {
       res.status(200).json({ cybers: allCybers });
