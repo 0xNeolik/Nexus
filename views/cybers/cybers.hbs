@@ -1,19 +1,24 @@
-<h1 class="my-5 text-center">All Cybers</h1>
+<h1 class="my-4 text-center">All Cybers</h1>
 <div class="container">
-  <div class="column">
-    <form method="POST" action="/places">
+  {{! Search }}
+  <form method="POST" action="/cyber">
 
-      <label>Buscar cyber</label>
+    <label>Buscar cyber</label>
+    <div>
       <input type="text" name="name" placeholder="Cyber's name" />
+      <input type="text" name="location_name" placeholder="Cyber's Location" />
 
-      <input type="submit" name="" id="submit" />
-    </form>
-    <div class="row justify-content-between">
+      <input type="submit" name="Buscar" id="submit" value="Buscar" />
+      <a href="/cyber">Quit filter</a>
+    </div>
+  </form>
+  <div class="column">
+    <div class="row justify-content-between" id="all-cyber-section">
       {{#each AllCybers}}
-        <div class="card mb-5 col-md-5" id="card-cyber">
+        <div class="card mb-5 col-md-5" id="card-cyber" style="max-width: 540px;">
           <a href="/cyber/details-cyber?id={{id}}">
-            <div class="row">
-              <div class="col-md-4">
+            <div class="row g-0">
+              <div class="col-md-4" id="img-space">
                 <img src="{{image}}" class="img-fluid rounded-start" alt="Cyber-Image" />
               </div>
               <div class="col-md-8">
@@ -25,7 +30,6 @@
                   <p class="card-text">{{description}}</p>
                 </div>
               </div>
-
             </div>
           </a>
         </div>
