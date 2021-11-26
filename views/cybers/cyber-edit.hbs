@@ -1,38 +1,87 @@
-<h1>Edit {{cyber.name}}</h1>
-<form action="/cyber/{{cyber.id}}/edit" method="POST" enctype="multipart/form-data">
-  <div class="my-5">
-    <h5>Cyber`s location</h5>
-    <input
-      id="searchInput"
-      class="controls"
-      type="text"
-      value="{{cyber.location_name}}"
-      name="location_name"
-      required
-    />
-  </div>
-  <div id="map"></div>
-  <div class="form-group">
-    <label>Nueva imagen
-      <input type="file" name="new-image" class="form-control-file" />
-      <input type="text" name="existingImage" hidden value="{{cyber.image}}" />
-    </label>
-  </div>
-  <div class="form-group">
-    <label for="name">Cyber`s name</label>
-    <input type="text" class="form-control" id="name" name="name" required value="{{cyber.name}}" />
-  </div>
-  <div class="form-group">
-    <label for="description">Description</label>
-    <textarea type="text" class="form-control" id="username" name="description">{{cyber.description}}</textarea>
-  </div>
+<div class="container" id="cyber-edit">
 
-  <input type="text" name="lat" id="lat" hidden value={{cyber.location.coordinates.[0]}}>
-  <input type="text" name="lng" id="log" hidden value={{cyber.location.coordinates.[1]}}>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
 
-  <button type="submit" class="btn btn-dark btn-block" id="create-btn">Create it</button>
-</form>
+      <h1 class="text-center">Edit {{cyber.name}}</h1>
+      <form
+        action="/cyber/{{cyber.id}}/edit"
+        method="POST"
+        enctype="multipart/form-data"
+        class="py-5"
+      >
+        <div>
+          <h5>Cyber`s location</h5>
+          <input
+            id="searchInput"
+            class="controls"
+            type="text"
+            value="{{cyber.location_name}}"
+            name="location_name"
+            required
+          />
+        </div>
+        <div id="map" class="map my-5"></div>
+        <div class="form-group">
+          <label>Nueva imagen
+            <input type="file" name="new-image" class="form-control-file" id="img-form"/>
+            <input
+              type="text"
+              name="existingImage"
+              hidden
+              value="{{cyber.image}}"
+              
+            />
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="name">Cyber`s name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            required
+            value="{{cyber.name}}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea
+            type="text"
+            class="form-control mb-4"
+            id="username"
+            name="description"
+          >{{cyber.description}}</textarea>
+        </div>
+
+        <input
+          type="text"
+          name="lat"
+          id="lat"
+          hidden
+          value={{cyber.location.coordinates.[0]}}
+        />
+        <input
+          type="text"
+          name="lng"
+          id="log"
+          hidden
+          value={{cyber.location.coordinates.[1]}}
+        />
+
+        <button
+          type="submit"
+          class="btn btn-dark btn-block"
+          id="edit-btn"
+        >Edit {{cyber.name}}</button>
+      </form>
+    </div>
+  </div>
+</div>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="/js/MapsAPI/index.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key={{keymaps}}&callback=initMap"></script>
+<script
+  src="https://maps.googleapis.com/maps/api/js?libraries=places&key={{keymaps}}&callback=initMap"
+></script>

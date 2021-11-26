@@ -20,6 +20,7 @@ app.locals.title = `Created with IronLauncher`;
 
 app.locals.user = undefined;
 
+
 app.locals.keymaps = process.env.APIMAPS;
 
 app.locals.keynews =  process.env.APINEWS;

@@ -1,8 +1,8 @@
 <div class="container text-center" id="profile-frame">
   <img src="{{user.image}}" alt="" id="user-img-profile" />
   <h1 class="my-5">{{user.name}}</h1>
-  <p>
-    <small class="text-muted">{{user.description}}</small>
+  <p class="mb-5">
+    <small >{{user.description}}</small>
   </p>
   <input type="text" value="{{user.id}}" id="userID" hidden />
   {{#if isOwner}}

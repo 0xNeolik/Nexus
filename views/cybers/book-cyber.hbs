@@ -1,13 +1,19 @@
-<h1>Do a book in  {{cyber.name}}</h1>
-<form action="/cyber/{{cyber.id}}/book" method="POST">
-  <div class="form-group">
-    <label for="name">Date of the reservation</label>
-    <input type="datetime-local" class="form-control" id="name" name="date" required />
-  </div>
-  <div class="form-group">
-    <label for="description">Participants</label>
-    <input type="number" class="form-control" id="username" name="participants">
-  </div>
+<div class="container" id="cyber-book">
 
-  <button type="submit" class="btn btn-dark btn-block" id="create-btn">Create it</button>
-</form>
+  <div class="row justify-content-center">
+    <div class="col-md-7">
+        <h1>Do a book in  {{cyber.name}}</h1>
+        <form action="/cyber/{{cyber.id}}/book" method="POST">
+          <div class="form-group">
+            <label for="name">Date of the reservation</label>
+            <input type="datetime-local" class="form-control" id="name" name="date" required />
+          </div>
+          <div class="form-group">
+            <label for="description">Participants</label>
+            <input type="number" class="form-control" id="username" name="participants">
+          </div>
+          <button type="submit" class="btn btn-dark btn-block" id="edit-btn">Create it</button>
+        </form>
+    </div>
+  </div>
+</div>

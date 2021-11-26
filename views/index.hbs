@@ -70,13 +70,13 @@
   <div id='calendar'></div>
 </section>
 {{/if }}
-<section id="quarter-section">
+<section class="quarter-section" id="news-change-class">
   <div class="row " id="news-container">
     {{#each news}}
     <a href="{{url}}">
          <div class='col-3'>
-             <div class="card border-0">
-             <img src="{{urlToImage}}" class="card-img-top">
+             <div class="card border-0" id="news-card">
+             <img src="{{urlToImage}}" id="news-img">
              <div class="card-body">
                 <h5 class="card-title">{{title}}</h5></a>
                  <p class="card-text">{{description}}</p>
@@ -152,6 +152,7 @@
    </div>
    </footer>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/js/script.js"></script>
 <script src="/js/MapsAPI/index.js"></script>
 <script src="/js/CalendarAPI/index.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key={{keymaps}}&callback=indexMap"></script>
