@@ -113,7 +113,7 @@ function placeMarkers(mapIndex, cybers) {
       map: mapIndex,
       title: cyber.name,
       icon: {
-        url: "images/Generalmarker.svg",
+        url: "/images/Generalmarker.svg",
         scaledSize: new google.maps.Size(55, 45),
       },
     });
