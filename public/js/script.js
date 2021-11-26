@@ -1,3 +1,5 @@
+const userIDforNews = document.getElementById("userID")
+
 document.addEventListener(
   "DOMContentLoaded",
   () => {
@@ -6,11 +8,8 @@ document.addEventListener(
   false
 );
 
-const news = document.getElementById("news-change-class")
-const userID = document.getElementById("userID")
-
-if(userID.value){
-  news.classList.replace("quarter-section","quarter-section-full");
+if(userIDforNews.value){
+  document.getElementById("news-change-class").classList.replace("quarter-section","quarter-section-full");
 }
 
 

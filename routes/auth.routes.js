@@ -54,18 +54,18 @@ router.post("/signup", (req, res) => {
       })
       .catch((err) => console.log(err));
 
-    // transporter
-    //   .sendMail({
-    //     from: '"Nexus Sign Up" <Nexus-Cyber@hotmail.com>',
-    //     to: `${email}`,
-    //     subject: `${subject}`,
-    //     text: `${message}`,
-    //     html: `<b>${message}</b>`,
-    //   })
-    //   .then((info) => res.redirect("/"))
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    transporter
+      .sendMail({
+        from: '"Nexus Sign Up" <Nexus-Cyber@hotmail.com>',
+        to: `${email}`,
+        subject: `${subject}`,
+        text: `${message}`,
+        html: `<b>${message}</b>`,
+      })
+      .then((info) => res.redirect("/"))
+      .catch((error) => {
+        console.log(error);
+      });
   });
 });
 

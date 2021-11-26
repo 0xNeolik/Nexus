@@ -226,10 +226,11 @@ function cyberProfileMarkers(mapProfile, cybers) {
   return markers;
 }
 
-const mapLatitude = Number(document.querySelector("#latitude").value);
-const mapLongitude = Number(document.querySelector("#longitude").value);
+
 
 function DetailsMap() {
+  const mapLatitude = Number(document.querySelector("#latitude").value);
+  const mapLongitude = Number(document.querySelector("#longitude").value);
   const Cyber = {
     lat: mapLatitude,
     lng: mapLongitude,
