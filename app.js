@@ -18,7 +18,7 @@ require("./error-handling")(app);
 
 app.locals.title = `Created with IronLauncher`;
 
-app.locals.user = undefined;
+app.locals.user = req.session.currentUser;
 
 app.locals.keymaps = process.env.APIMAPS;
 
