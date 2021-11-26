@@ -100,10 +100,16 @@ input {
   border-radius: 50%;
   width: 25px;
 }
+#user-img-profile{
+  margin: 0 auto;
+  width: 200px;
+  height: 200px;
+  
+}
 
-#user-img-profile {
+#user-img-profile img{
   border-radius: 50%;
-  width: 20%;
+  object-fit:cover;
 }
 
 #card-cyber {
