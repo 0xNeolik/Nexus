@@ -10,7 +10,7 @@ const cyberSchema = new Schema(
     location_name: String,
     image: {
       type: String,
-      default: "/images/blank-profile-picture.png",
+      default: "/images/CyberDefault.svg",
     },
     description: {
       type: String,

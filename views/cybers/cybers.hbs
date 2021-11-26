@@ -1,19 +1,33 @@
-<h1 class="my-4 text-center">All Cybers</h1>
+<h1 class="my-4 text-center title-all-cybers">All Cybers</h1>
 <div class="container">
   {{! Search }}
   <form method="POST" action="/cyber">
 
-    <label>Buscar cyber</label>
-    <div>
-      <input type="text" name="name" placeholder="Cyber's name" />
-      <input type="text" name="location_name" placeholder="Cyber's Location" />
-
-      <input type="submit" name="Buscar" id="submit" value="Buscar" />
+    {{!-- <div class="col-10">
+      <input type="text" name="location_name" placeholder="Cyber's Location" class="form-control form-control-sm"/>
+        <input type="submit" name="Buscar" id="submit" value="Buscar" />
       <a href="/cyber">Quit filter</a>
-    </div>
+      </div> --}}
+      
+      {{!-- <div class="input-group rounded">
+        <div class="col-10 form-outline">
+          <input type="search" name="location_name" placeholder="Cyber's Location" class="form-control form-control-sm" id="form1"/>
+          <label class="form-label" for="form1">Search</label>
+        </div>
+        <input type="submit" name="Buscar" id="submit" value="Buscar" />
+        <a href="/cyber">Quit filter</a>
+      </div> --}}
+
+      <div class="input-group rounded">
+        <input type="text" class="form-control rounded"  name="location_name"  placeholder="Cyber's Location" aria-label="Search"
+        aria-describedby="search-addon" />
+        <button type="button" class="btn btn-outline-primary">Search</button>
+          {{!-- <a href="/cyber">Quit filter</a>  --}}
+      </div>
+    
   </form>
   <div class="column">
-    <div class="row justify-content-between" id="all-cyber-section">
+    <div class="row justify-content-around" id="all-cyber-section">
       {{#each AllCybers}}
         <div class="card mb-5 col-md-5" id="card-cyber" style="max-width: 540px;">
           <a href="/cyber/details-cyber?id={{id}}">
@@ -27,7 +41,7 @@
                   <p class="card-text"><small
                       class="text-muted"
                     >{{location_name}}</small></p>
-                  <p class="card-text">{{description}}</p>
+                  {{!-- <p class="card-text">{{description}}</p> --}}
                 </div>
               </div>
             </div>

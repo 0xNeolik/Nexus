@@ -1,12 +1,12 @@
 <div class="container">
   {{#if isOwner}}
     {{#with cyber}}
-      <h1>{{{name}}}</h1>
+    <h1 class="my-4 text-center title-details-cybers">{{{name}}}</h1>
       <div class="row">
-        <div class="col-md-4 img">
+        <div class="col-md-6 img-details">
           <img src={{{image}}} alt="Cyber-image"/>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-6">
           <h4>{{{location_name}}}</h4>
           <p>{{{description}}}</p>
           <input
@@ -30,17 +30,17 @@
           </p>
 
         </div>
-        <div id="mapDetails" class="col-md-10"></div>
+        <div id="mapDetails" class="col-md-12 map-details"></div>
       </div>
     {{/with}}
   {{else}}
     {{#with cyber}}
-      <h1>{{{name}}}</h1>
+      <h1 class="my-4 text-center title-details-cybers">{{{name}}}</h1>
       <div class="row">
-        <div class="col-md-4 img">
+        <div class="col-md-6 img-details">
           <img src={{{image}}} alt="Cyber-image"/>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-6">
           <h4>{{{location_name}}}</h4>
           <p>{{{description}}}</p>
           <input
@@ -65,17 +65,18 @@
           </p>
 
         </div>
-        <div id="mapDetails" class="col-md-10"></div>
+        <div id="mapDetails" class="col-md-12 map-details"></div>
       </div>
     {{/with}}
   {{/if}}
   <div class="d-flex row cyber-details-buttons">
-    <a href="/cyber" class="btn btn-dark mx-3">Back to Cybers</a>
-    <a href="/cyber/book-cyber?id={{cyber.id}}" class="btn btn-dark mx-3">Book a PC</a>
+    <a href="/cyber/book-cyber?id={{cyber.id}}" class="btn btn-success mx-5">Book a PC</a>
+    <a href="/cyber" class="btn btn-dark mx-5">Back to Cybers</a>
+    
     {{#if isOwner}}
       <a href="/cyber/edit?id={{cyber.id}}" class="btn btn-dark mx-5">Edit Cyber</a>
       <form action="/cyber/{{cyber.id}}/delete" method="POST">
-        <button type="submit" class="btn btn-dark mx-3">Delete Cyber</button>
+        <button type="submit" class="btn btn-danger mx-5">Delete Cyber</button>
       </form>
     {{/if}}
   </div>

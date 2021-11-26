@@ -17,9 +17,9 @@ router.get("/", isLoggedIn, (req, res) => {
 });
 
 router.post("/", isLoggedIn, (req, res) => {
-  const { name, location_name } = req.body;
+  const { location_name } = req.body;
 
-  Cyber.find({ $or: [{ name }, { location_name: { $regex: location_name } }] })
+  Cyber.find({ location_name: { $regex: location_name } })
     .then((AllCybers) => {
       res.render("cybers/cybers", { AllCybers });
     })
