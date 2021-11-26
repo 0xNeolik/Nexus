@@ -16,15 +16,17 @@ router.get("/", (req, res) => {
       const [newsResponse, cyber] = data
 
       const news = newsResponse.data.articles
+      
+      const navExplorer = true
 
       if (req.session.currentUser) {
         const cyberFiltered = cyber.filter((el) =>{
           return el.owner == req.session.currentUser._id
         })
-        res.render("index", { isBusiness: isBusiness(req.session.currentUser), cyber, cyberFiltered, news });
+        res.render("index", { isBusiness: isBusiness(req.session.currentUser), cyber, cyberFiltered, news, navExplorer });
         return
       }
-      res.render("index", { cyber, news });
+      res.render("index", { cyber, news, navExplorer });
       return
 
     })

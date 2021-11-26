@@ -5,14 +5,18 @@ const User = require("../models/User.model");
 
 const transporter = require("../config/nodemailer.config");
 
+
+
 const fileUploader = require("../config/cloudinary.config");
 const { isLoggedIn } = require("../middlewares/index");
 const { isOwner } = require("../utils");
+
 
 // Signup
 router.get("/signup", (req, res) => res.render("auth/signup"));
 router.post("/signup", (req, res) => {
   const { name, email, password, subject, message } = req.body;
+
 
   if (password.length === 0 || email.length === 0) {
     res.render("auth/signup-form", { errorMsg: "Rellena todos los campos" });
@@ -70,6 +74,7 @@ router.get("/login", (req, res) => res.render("auth/login"));
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
 
+
   if (password.length === 0 || email.length === 0) {
     res.render("auth/login", { errorMsg: "Rellena los campos" });
     return;
@@ -90,6 +95,7 @@ router.post("/login", (req, res) => {
 
       req.session.currentUser = user;
       req.app.locals.user = req.session.currentUser;
+
       res.redirect("/");
     })
     .catch((err) => console.log(err));

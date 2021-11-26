@@ -135,7 +135,6 @@ input {
   padding: 0%;
 }
 
-
 .cyber-details {
   margin: 100px;
 }
@@ -151,6 +150,7 @@ input {
 .cyber-details-buttons {
   justify-content: center;
 }
+
 #news-container {
   display: flex;
   justify-content: space-evenly;
@@ -184,10 +184,8 @@ input {
 #inicial-logo {
   margin: 100px 0;
   transition: transform 0.2s;
-}
-#inicial-logo:hover {
-  text-decoration: none;
-  transform: scale(1.2);
+  animation: latidos 3s infinite;
+  transform-origin: center;
 }
 
 #second-section {
@@ -205,6 +203,7 @@ input {
   height: 80%;
   width: 80%;
   margin: 0 10%;
+  border-radius: 10px;
 }
 
 #text-second-section {
@@ -228,16 +227,37 @@ input {
 #third-section a:hover {
   color: (27, 27, 27);
 }
-#quarter-section {
+
+.quarter-section {
   padding: 75px 0;
-  background: rgb(36,4,69);
-  background: linear-gradient(180deg, rgba(36,4,69,1) 0%, rgba(10,2,21,1) 100%);
+  background: rgb(79, 9, 145);
+  background: linear-gradient(
+    180deg,
+    rgba(79, 9, 145, 1) 0%,
+    rgba(10, 2, 22, 1) 100%
+  );
 }
-#calendar-section{
-  padding-bottom:100px;
-  background: rgb(79,9,145);
-  background: linear-gradient(180deg, rgba(79,9,145,1) 0%, rgba(36,5,68,1) 100%);
+
+.quarter-section-full {
+  padding: 75px 0;
+  background: rgb(36, 4, 69);
+  background: linear-gradient(
+    180deg,
+    rgba(36, 4, 69, 1) 0%,
+    rgba(10, 2, 21, 1) 100%
+  );
 }
+
+#calendar-section {
+  padding: 100px 0;
+  background: rgb(79, 9, 145);
+  background: linear-gradient(
+    180deg,
+    rgba(79, 9, 145, 1) 0%,
+    rgba(36, 5, 68, 1) 100%
+  );
+}
+
 footer {
   color: white;
   background: rgb(8, 1, 16);
@@ -247,23 +267,29 @@ footer {
     rgba(80, 9, 147, 1) 100%
   );
 }
+
 #signup-frame,
 #login-frame,
 #visit-profile-frame {
   padding-bottom: 500px;
 }
+
 #visit-profile-frame,
 #profile-frame {
   padding-top: 100px;
 }
-#calendar{
+
+#calendar {
   color: black;
+  border-radius: 10px;
   background-color: white;
   max-width: 1100px;
   height: 500px;
-  margin: 0 auto ;
+  margin: 0 auto;
+  padding: 2%;
 }
-#calendar a{
+
+#calendar a {
   color: black;
 }
 
@@ -287,4 +313,43 @@ footer {
 
 .map-details{
   margin-top: 80px;
+}
+
+#news-card {
+  height: 475px;
+}
+#news-img {
+  height: 200px;
+}
+#profile-edit {
+  padding: 200px 0;
+}
+#img-form {
+  color: white;
+}
+#cyber-edit {
+  padding-top: 50px;
+}
+#edit-btn{
+  width: 40%;
+  margin: 0 auto;
+}
+#create-btn{
+  width: 40%;
+  margin: 0 auto;
+}
+#cyber-book{
+  padding-top: 100px;
+  padding-bottom:300px
+}
+@keyframes latidos {
+  from {
+    transform: none;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  to {
+    transform: none;
+  }
 }

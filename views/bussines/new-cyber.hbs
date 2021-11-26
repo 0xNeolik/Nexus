@@ -1,37 +1,43 @@
-<h1>Create your own Cyber</h1>
-<form action="/cyber/create-new-cyber" method="POST">
-  <div class="my-5">
-    <h5>Cyber`s location</h5>
-    <input
-      id="searchInput"
-      class="controls"
-      type="text"
-      placeholder="Enter a location"
-      name="location_name"
-      required
-    />
-  </div>
-  <div id="map"></div>
-  <div class="form-group">
-    <label for="name">Cyber`s name</label>
-    <input type="text" class="form-control" id="name" name="name" required />
-  </div>
-  <div class="form-group">
-    <label for="description">Description</label>
-    <textarea
-      type="text"
-      class="form-control"
-      id="username"
-      name="description"
-    ></textarea>
-  </div>
-  <input type="text" name="owner" id="owner-cyber" hidden value={{user.id}}>
-  <input type="text" name="lat" id="lat" hidden >
-  <input type="text" name="lng" id="log" hidden >
+<div class="container" id="cyber-edit">
 
-  <button type="submit" class="btn btn-dark btn-block" id="create-btn">Create it</button>
-</form>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1>Create your own Cyber</h1>
+      <form action="/cyber/create-new-cyber" method="POST" class="pb-5">
+        <div class="my-5">
+          <h5>Cyber`s location</h5>
+          <input
+            id="searchInput"
+            class="controls"
+            type="text"
+            placeholder="Enter a location"
+            name="location_name"
+            required
+          />
+        </div>
+        <div id="map" class="my-4"></div>
+        <div class="form-group">
+          <label for="name">Cyber`s name</label>
+          <input type="text" class="form-control" id="name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea
+            type="text"
+            class="form-control"
+            id="username"
+            name="description"
+          ></textarea>
+        </div>
+        <input type="text" name="owner" id="owner-cyber" hidden value={{user.id}}>
+        <input type="text" name="lat" id="lat" hidden >
+        <input type="text" name="lng" id="log" hidden >
 
+        <button type="submit" class="btn btn-dark btn-block mt-4" id="create-btn">Create it</button>
+      </form>
+   </div>
+  </div>
+</div>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="/js/MapsAPI/index.js"></script>
 <script
